@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Reglas para usuarios reales
+    match /usuarios/{userId} {
+      // Solo el usuario puede leer y escribir SUS PROPIOS datos
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /resultados/{resultadoId} {
+      // Un usuario solo puede crear resultados si envía su propio ID
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+
+    // Reglas para el Modo Test (Opcional, misma seguridad)
+    match /test_usuarios/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /test_resultados/{resultadoId} {
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+  }
+}
