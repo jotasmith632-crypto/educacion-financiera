@@ -2,24 +2,84 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Reglas para usuarios reales
+    // ==========================================
+    // COLECCIÓN: usuarios
+    // ==========================================
     match /usuarios/{userId} {
-      // Solo el usuario puede leer y escribir SUS PROPIOS datos
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    match /resultados/{resultadoId} {
-      // Un usuario solo puede crear resultados si envía su propio ID
-      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
-      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      // Solo el usuario correspondiente puede leer sus propios datos
+      allow read: if request.auth != null && request.auth.uid == userId;
+
+      // Validación estricta en la creación del perfil del usuario (Registros nuevos)
+      allow create: if request.auth != null && request.auth.uid == userId
+        && request.resource.data.name is string
+        && request.resource.data.name.size() < 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() < 100
+        && request.resource.data.points is int
+        && request.resource.data.points >= 0
+        && request.resource.data.points <= 1000000
+        && request.resource.data.level is int
+        && request.resource.data.level >= 0
+        && request.resource.data.completedLevels is list
+        && request.resource.data.unlockedModules is list
+        && request.resource.data.school is string
+        && request.resource.data.school.size() < 100
+        && request.resource.data.grade is string
+        && request.resource.data.grade.size() < 100
+        && request.resource.data.district is string
+        && request.resource.data.district.size() < 100
+        && request.resource.data.fecha_registro is string
+        && request.resource.data.lastLogin is string
+        && (!('avatar' in request.resource.data) || (request.resource.data.avatar is string && request.resource.data.avatar.size() < 100))
+        && (!('streak' in request.resource.data) || (request.resource.data.streak is int && request.resource.data.streak >= 0))
+        && (!('metaFinanciera' in request.resource.data) || (request.resource.data.metaFinanciera is string && request.resource.data.metaFinanciera.size() < 250));
+
+      // Validación estricta en actualizaciones (Progreso, avatar, meta financiera, streak)
+      allow update: if request.auth != null && request.auth.uid == userId
+        && request.resource.data.name is string
+        && request.resource.data.name.size() < 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() < 100
+        && request.resource.data.points is int
+        && request.resource.data.points >= 0
+        && request.resource.data.points <= 1000000
+        && request.resource.data.level is int
+        && request.resource.data.level >= 0
+        && request.resource.data.completedLevels is list
+        && request.resource.data.unlockedModules is list
+        && request.resource.data.lastLogin is string
+        // Evitar manipulación indebida de campos demográficos fijos una vez registrados
+        && request.resource.data.school == resource.data.school
+        && request.resource.data.grade == resource.data.grade
+        && request.resource.data.district == resource.data.district
+        && request.resource.data.fecha_registro == resource.data.fecha_registro
+        && (!('avatar' in request.resource.data) || (request.resource.data.avatar is string && request.resource.data.avatar.size() < 100))
+        && (!('streak' in request.resource.data) || (request.resource.data.streak is int && request.resource.data.streak >= 0))
+        && (!('metaFinanciera' in request.resource.data) || (request.resource.data.metaFinanciera is string && request.resource.data.metaFinanciera.size() < 250));
+      
+      // Bloqueo total de eliminación de perfiles de usuario por cliente
+      allow delete: if false;
     }
 
-    // Reglas para el Modo Test (Opcional, misma seguridad)
-    match /test_usuarios/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    match /test_resultados/{resultadoId} {
-      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    // ==========================================
+    // COLECCIÓN: resultados
+    // ==========================================
+    match /resultados/{resultadoId} {
+      // Un usuario solo puede crear resultados si envía su propio ID y cumple con el rango del score
+      allow create: if request.auth != null
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.moduleId is string
+        && request.resource.data.moduleId.size() < 100
+        && request.resource.data.score is int
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 1000
+        && request.resource.data.timestamp is string;
+
+      // Solo el dueño de los resultados puede consultarlos
       allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      
+      // Deshabilitar modificaciones o eliminación de registros de resultados para preservar auditoría de datos
+      allow update, delete: if false;
     }
   }
 }

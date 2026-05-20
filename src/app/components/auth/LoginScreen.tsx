@@ -123,18 +123,6 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
             Regístrate
           </button>
         </p>
-
-        <div className="pt-4 border-t border-gray-200">
-          <button
-            onClick={() => {
-              localStorage.setItem('isTestMode', 'true');
-              window.location.reload();
-            }}
-            className="w-full py-3 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50 text-amber-700 text-xs font-black uppercase tracking-widest hover:bg-amber-100 transition-colors"
-          >
-            🚀 Activar Modo Test (Temporal)
-          </button>
-        </div>
       </div>
     </div>
   );

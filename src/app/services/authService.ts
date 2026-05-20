@@ -1,4 +1,3 @@
-
 import { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
@@ -16,8 +15,9 @@ export const loginWithEmail = async (email: string, password: string) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error: any) {
+    console.error("Auth Login Error Code:", error.code);
     toast.error("Error al iniciar sesión. Verifica tus credenciales.");
-    throw error.message;
+    throw new Error("El correo electrónico o la contraseña son incorrectos.");
   }
 };
 
@@ -26,14 +26,14 @@ export const registerWithEmail = async (email: string, password: string, name: s
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
-    // Guardar en Firestore con los datos demográficos (Colegio, Grado, Distrito)
-    const isTest = localStorage.getItem('isTestMode') === 'true';
-    await guardarUsuario(user.uid, name, email, isTest, extraData);
+    // Guardar en Firestore con los datos demográficos (Colegio, Grado, Distrito) en Producción
+    await guardarUsuario(user.uid, name, email, extraData);
     
     return user;
   } catch (error: any) {
+    console.error("Auth Register Error Code:", error.code);
     toast.error("Error al crear la cuenta. Intenta con otro correo.");
-    throw error.message;
+    throw new Error("Error al crear la cuenta. Intenta con otro correo.");
   }
 };
 
@@ -47,9 +47,8 @@ export const loginWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     
-    // Guardar/Actualizar en Firestore
-    const isTest = localStorage.getItem('isTestMode') === 'true';
-    await guardarUsuario(user.uid, user.displayName || 'Usuario Google', user.email || '', isTest);
+    // Guardar/Actualizar en Firestore (Producción)
+    await guardarUsuario(user.uid, user.displayName || 'Usuario Google', user.email || '');
     
     return user;
   } catch (error: any) {
@@ -60,7 +59,7 @@ export const loginWithGoogle = async () => {
       throw "El proceso fue cancelado.";
     }
     toast.error("Error al conectar con Google.");
-    throw error.message || "Error al conectar con Google.";
+    throw new Error("Error al conectar con Google.");
   }
 };
 

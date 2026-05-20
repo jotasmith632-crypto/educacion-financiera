@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDOeY_k-WI1mk9IsQ2-Rgj826DEI8uQtgg",
-  authDomain: "educacion-financiera-57847.firebaseapp.com",
-  projectId: "educacion-financiera-57847",
-  storageBucket: "educacion-financiera-57847.firebasestorage.app",
-  messagingSenderId: "198547967619",
-  appId: "1:198547967619:web:5800ac7e4f4f0d0cf8d5b6"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);

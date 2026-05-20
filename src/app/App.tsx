@@ -69,7 +69,7 @@ interface DragItem {
 }
 
 export default function App() {
-  const [isTestMode, setIsTestMode] = useState<boolean>(localStorage.getItem('isTestMode') === 'true');
+  const isTestMode = false;
   const [currentScreen, setCurrentScreen] = useState<Screen>('onboarding-1');
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [userData, setUserData] = useState<any>(null);
@@ -101,7 +101,7 @@ export default function App() {
       const unsubscribe = subscribeToAuthChanges(async (user) => {
         setCurrentUser(user);
         if (user) {
-          const data = await obtenerDatosUsuario(user.uid, isTestMode);
+          const data = await obtenerDatosUsuario(user.uid);
           setUserData(data);
           
           // Sincronizar puntos y avatar si existen
@@ -120,7 +120,7 @@ export default function App() {
         setAuthLoading(false);
       });
       return () => unsubscribe();
-    }, [isTestMode, currentScreen]); // Re-subscribirse si cambia el modo test o la pantalla actual
+    }, [currentScreen]); // Re-subscribirse si cambia la pantalla actual
 
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [showOlympicsInfo, setShowOlympicsInfo] = useState(false);
@@ -170,7 +170,7 @@ export default function App() {
 
       // 1. Log para la tesis (transacción individual)
       if (moduleId) {
-        await guardarResultadoJuego(currentUser.uid, moduleId, newPoints, isTestMode);
+        await guardarResultadoJuego(currentUser.uid, moduleId, newPoints);
       }
       
       // 2. Actualizar perfil global del usuario
@@ -186,7 +186,7 @@ export default function App() {
         updates.completedLevels = arrayUnion(levelKey);
       }
       
-      await actualizarDatosUsuario(currentUser.uid, updates, isTestMode);
+      await actualizarDatosUsuario(currentUser.uid, updates);
       
       setModulePoints(totalPoints);
       setSessionPoints(prev => prev + newPoints);
@@ -504,7 +504,7 @@ const [{ isOver }, drop] = useDrop(() => ({
 
   const handleSaveAvatar = async () => {
     if (currentUser) {
-      await actualizarDatosUsuario(currentUser.uid, { avatar }, isTestMode);
+      await actualizarDatosUsuario(currentUser.uid, { avatar });
     }
     setCurrentScreen('home');
   };
@@ -1730,8 +1730,8 @@ const [{ isOver }, drop] = useDrop(() => ({
       const unsubscribe = onAuthStateChanged(auth, async (user) => {
         if (user) {
           try {
-            // Buscamos el documento del niño en la colección "usuarios" o "test_usuarios"
-            const docSnap = await obtenerDatosUsuario(user.uid, isTestMode);
+            // Buscamos el documento del niño en la colección "usuarios"
+            const docSnap = await obtenerDatosUsuario(user.uid);
 
             if (docSnap) {
               setUserData(docSnap);
@@ -3637,30 +3637,8 @@ const [{ isOver }, drop] = useDrop(() => ({
   return (
     <DndProvider backend={HTML5Backend}>
       <Toaster position="top-center" richColors />
-      <div 
-        className="font-sans min-h-screen relative"
-        style={isTestMode ? { filter: 'sepia(0.4) saturate(1.8) hue-rotate(-15deg)' } : {}}
-      >
-        {isTestMode && (
-          <div className="fixed inset-0 pointer-events-none z-[9998] bg-amber-500/5" />
-        )}
-        {isTestMode && (
-          <div className="fixed top-0 left-0 right-0 z-[9999] bg-amber-500 text-black text-[10px] font-black py-1 px-4 text-center uppercase tracking-widest shadow-lg flex items-center justify-center gap-2">
-            <span className="animate-pulse text-lg">🛠️</span>
-            MODO TEST ACTIVO - Los datos se borrarán a la medianoche
-            <button 
-              onClick={() => {
-                setIsTestMode(false);
-                localStorage.setItem('isTestMode', 'false');
-                window.location.reload();
-              }}
-              className="ml-4 bg-black text-amber-500 font-bold px-4 py-2 rounded-md hover:bg-gray-800 transition-colors text-xs"
-            >
-              SALIR
-            </button>
-          </div>
-        )}
-        <div className={isTestMode ? "pt-6" : ""}>
+      <div className="font-sans min-h-screen relative">
+        <div>
           {/* Onboarding Screens */}
         {currentScreen === 'onboarding-1' && <Onboarding1 />}
         {currentScreen === 'onboarding-2' && <Onboarding2 />}

@@ -11,4 +11,9 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless: false, // Para que veas el navegador abrirse y moverse solo
   },
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: true,
+  },
 });

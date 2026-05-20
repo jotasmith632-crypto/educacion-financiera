@@ -6,6 +6,7 @@
 # Entorno y Sistema
 .env
 .env.*
+.env.local
 .DS_Store
 
 # Playwright
