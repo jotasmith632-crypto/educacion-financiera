@@ -4,7 +4,8 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
-  User
+  User,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import { auth, provider } from "../../firebaseConfig";
 import { guardarUsuario } from "../../db";
@@ -60,6 +61,23 @@ export const loginWithGoogle = async () => {
     }
     toast.error("Error al conectar con Google.");
     throw new Error("Error al conectar con Google.");
+  }
+};
+
+export const sendPasswordReset = async (email: string) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast.success("Correo de recuperación enviado.");
+  } catch (error: any) {
+    console.error("Auth Password Reset Error:", error);
+    let errorMsg = "Error al enviar el correo de recuperación. Inténtalo de nuevo.";
+    if (error.code === 'auth/user-not-found') {
+      errorMsg = "No existe un usuario registrado con ese correo electrónico.";
+    } else if (error.code === 'auth/invalid-email') {
+      errorMsg = "El correo electrónico ingresado no es válido.";
+    }
+    toast.error(errorMsg);
+    throw new Error(errorMsg);
   }
 };
 
