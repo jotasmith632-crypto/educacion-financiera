@@ -1286,7 +1286,7 @@ const [{ isOver }, drop] = useDrop(() => ({
             animate={{ opacity: 1, y: 0 }}
             className="relative z-10 text-center"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-white bg-opacity-20 backdrop-blur-sm rounded-3xl mb-4">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl mb-4">
               <PiggyBank className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">
