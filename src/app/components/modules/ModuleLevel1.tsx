@@ -534,8 +534,11 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 pb-12 rounded-b-[40px] shadow-lg">
         <div className="flex items-center justify-between mb-8">
           <BackButton onClick={onBack} />
-          <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30">
-            <span className="font-bold text-sm">Nivel 1</span>
+          <div 
+            className="backdrop-blur-md px-4 py-2 rounded-full border border-white/30"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+          >
+            <span className="font-bold text-sm text-white">Nivel 1</span>
           </div>
         </div>
         
