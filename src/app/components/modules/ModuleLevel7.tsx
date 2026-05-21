@@ -246,9 +246,12 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
       <div className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
           <BackButton onClick={handleBack} />
-          <div className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30 flex items-center gap-2">
+          <div 
+            className="backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/30 flex items-center gap-2"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+          >
             <Star className="w-4 h-4 text-white" fill="currentColor" />
-            <span className="text-sm font-bold">EXAMEN FINAL</span>
+            <span className="text-sm font-bold text-white">EXAMEN FINAL</span>
           </div>
         </div>
         

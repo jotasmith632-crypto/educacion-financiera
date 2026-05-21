@@ -65,9 +65,12 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center text-white"
         >
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-3">
-            <ShoppingCart className="w-5 h-5" />
-            <span className="font-bold">Nivel 2 de 7</span>
+          <div 
+            className="inline-flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full mb-3 border border-white/30"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+          >
+            <ShoppingCart className="w-5 h-5 text-white" />
+            <span className="font-bold text-white">Nivel 2 de 7</span>
           </div>
           <h1 className="text-3xl font-bold mb-2">Gastos hormiga</h1>
           <p className="text-orange-50 text-lg">Identifica pequeños gastos innecesarios</p>
