@@ -49,7 +49,11 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
   };
 
   const handleFinish = () => {
-    const score = Object.keys(answers).length * 100;
+    let score = 0;
+    if (answers[2] === 1) score += 100;
+    if (answers[3] === 1) score += 100;
+    if (answers[4] === 1) score += 100;
+    
     confetti({
       particleCount: 200,
       spread: 100,
@@ -290,14 +294,16 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
-        <PrimaryButton 
-          onClick={handleNext}
-          disabled={(step === 2 && answers[2] === undefined) || (step === 3 && answers[3] === undefined) || (step === 4 && answers[4] === undefined)}
-        >
-          {step === totalSteps ? '¡Obtener mi Trofeo!' : 'Continuar'}
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </PrimaryButton>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center pointer-events-none z-20">
+        <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
+          <PrimaryButton 
+            onClick={handleNext}
+            disabled={(step === 2 && answers[2] === undefined) || (step === 3 && answers[3] === undefined) || (step === 4 && answers[4] === undefined)}
+          >
+            {step === totalSteps ? '¡Obtener mi Trofeo!' : 'Continuar'}
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );

@@ -286,7 +286,7 @@ export default function App() {
       maxLevel: 7,
       progress: 0,
       locked: !userData?.completedLevels?.includes('nivel7'),
-      status: 'locked'
+      status: userData?.completedLevels?.includes('nivel7') ? 'in-progress' : 'locked'
     },
     {
       id: 'consumo-publicidad',

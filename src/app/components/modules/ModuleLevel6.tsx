@@ -210,7 +210,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
                 </button>
                 <button 
                   onClick={sellShare}
-                  disabled={shares === 0 || day === 5}
+                  disabled={shares === 0}
                   className="flex-1 bg-red-500 text-white py-3 rounded-2xl font-bold shadow-md active:scale-95 disabled:opacity-30 disabled:grayscale"
                 >
                   Vender
@@ -376,14 +376,16 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
-        <PrimaryButton 
-          onClick={handleNext}
-          disabled={step === 3 && day < 5}
-        >
-          {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </PrimaryButton>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center pointer-events-none z-20">
+        <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
+          <PrimaryButton 
+            onClick={handleNext}
+            disabled={step === 3 && day < 5}
+          >
+            {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );

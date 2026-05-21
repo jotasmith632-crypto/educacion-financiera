@@ -30,7 +30,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
   const totalSteps = 6;
 
   // Estado para la actividad de comparación
-  const [years, setWeeks] = useState(1);
+  const [years, setYears] = useState(1);
   
   const handleNext = () => {
     if (step < totalSteps) {
@@ -202,7 +202,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                 <p className="text-center text-xs text-gray-400 mb-2">Desliza para ver pasar el tiempo</p>
                 <input 
                   type="range" min="1" max="10" value={years} 
-                  onChange={(e) => setWeeks(parseInt(e.target.value))}
+                  onChange={(e) => setYears(parseInt(e.target.value))}
                   className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-600"
                 />
                 <div className="flex justify-between mt-2 px-2 text-[10px] font-bold text-gray-400 uppercase">
@@ -330,11 +330,13 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
-        <PrimaryButton onClick={handleNext}>
-          {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </PrimaryButton>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center pointer-events-none z-20">
+        <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
+          <PrimaryButton onClick={handleNext}>
+            {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );

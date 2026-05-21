@@ -31,6 +31,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
 
   // Estado para la simulación
   const [selectedProduct, setSelectedProduct] = useState<'savings' | 'fixed' | null>(null);
+  const [retoAnswers, setRetoAnswers] = useState<{[key: number]: number}>({});
   
   const handleNext = () => {
     if (step < totalSteps) {
@@ -235,11 +236,25 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
                 <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100">
                   <p className="text-sm font-bold text-gray-800 mb-3">{item.q}</p>
                   <div className="flex gap-2">
-                    {item.options.map((opt, idx) => (
-                      <button key={idx} className="flex-1 py-2 px-3 rounded-xl border-2 border-indigo-100 text-xs font-bold text-indigo-600 hover:bg-indigo-50">
-                        {opt}
-                      </button>
-                    ))}
+                    {item.options.map((opt, idx) => {
+                      const isSelected = retoAnswers[i] === idx;
+                      const isCorrect = idx === item.correct;
+                      return (
+                        <button 
+                          key={idx} 
+                          onClick={() => setRetoAnswers({ ...retoAnswers, [i]: idx })}
+                          className={`flex-1 py-3 px-3 rounded-xl border-2 text-xs font-bold transition-all ${
+                            isSelected 
+                              ? (isCorrect 
+                                  ? 'border-green-500 bg-green-50 text-green-700' 
+                                  : 'border-red-500 bg-red-50 text-red-700')
+                              : 'border-indigo-100 text-indigo-600 hover:bg-indigo-50'
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
@@ -338,14 +353,16 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
-        <PrimaryButton 
-          onClick={handleNext}
-          disabled={step === 4 && !selectedProduct}
-        >
-          {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </PrimaryButton>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center pointer-events-none z-20">
+        <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
+          <PrimaryButton 
+            onClick={handleNext}
+            disabled={(step === 4 && !selectedProduct) || (step === 5 && (retoAnswers[0] === undefined || retoAnswers[1] === undefined))}
+          >
+            {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );

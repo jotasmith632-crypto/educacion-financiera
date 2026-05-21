@@ -378,14 +378,16 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
-        <PrimaryButton 
-          onClick={handleNext}
-          disabled={step === 4 && totalBudget - (budget.needs + budget.wants + budget.savings) > 0}
-        >
-          {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </PrimaryButton>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center pointer-events-none z-20">
+        <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
+          <PrimaryButton 
+            onClick={handleNext}
+            disabled={step === 4 && totalBudget - (budget.needs + budget.wants + budget.savings) > 0}
+          >
+            {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );
