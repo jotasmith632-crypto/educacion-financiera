@@ -30,7 +30,14 @@ service cloud.firestore {
         && request.resource.data.district.size() < 100
         && request.resource.data.fecha_registro is string
         && request.resource.data.lastLogin is string
-        && (!('avatar' in request.resource.data) || (request.resource.data.avatar is string && request.resource.data.avatar.size() < 100))
+        && (!('avatar' in request.resource.data) || (
+            request.resource.data.avatar is map
+            && request.resource.data.avatar.id is string
+            && request.resource.data.avatar.face is string
+            && request.resource.data.avatar.skin is string
+            && request.resource.data.avatar.hair is string
+            && request.resource.data.avatar.accessory is string
+          ))
         && (!('streak' in request.resource.data) || (request.resource.data.streak is int && request.resource.data.streak >= 0))
         && (!('metaFinanciera' in request.resource.data) || (request.resource.data.metaFinanciera is string && request.resource.data.metaFinanciera.size() < 250));
 
@@ -53,7 +60,14 @@ service cloud.firestore {
         && request.resource.data.grade == resource.data.grade
         && request.resource.data.district == resource.data.district
         && request.resource.data.fecha_registro == resource.data.fecha_registro
-        && (!('avatar' in request.resource.data) || (request.resource.data.avatar is string && request.resource.data.avatar.size() < 100))
+        && (!('avatar' in request.resource.data) || (
+            request.resource.data.avatar is map
+            && request.resource.data.avatar.id is string
+            && request.resource.data.avatar.face is string
+            && request.resource.data.avatar.skin is string
+            && request.resource.data.avatar.hair is string
+            && request.resource.data.avatar.accessory is string
+          ))
         && (!('streak' in request.resource.data) || (request.resource.data.streak is int && request.resource.data.streak >= 0))
         && (!('metaFinanciera' in request.resource.data) || (request.resource.data.metaFinanciera is string && request.resource.data.metaFinanciera.size() < 250));
       
