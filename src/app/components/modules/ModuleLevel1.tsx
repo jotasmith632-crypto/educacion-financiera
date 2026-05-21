@@ -557,7 +557,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       </div>
 
       {/* Main Content Area */}
-      <div className="px-6 -mt-6">
+      <div className="px-6 -mt-6 relative z-10">
         <AnimatePresence mode="wait">
           <Motion.div
             key={step}

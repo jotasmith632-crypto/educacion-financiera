@@ -33,7 +33,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
         </div>
       </div>
 
-      <div className="p-6 -mt-4 space-y-6">
+      <div className="p-6 -mt-4 space-y-6 relative z-10">
         {/* Status Card */}
         <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
           <div className="flex items-center justify-between mb-4">

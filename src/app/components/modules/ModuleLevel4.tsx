@@ -312,7 +312,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
       </div>
 
       {/* Contenido Deslizable */}
-      <div className="flex-1 px-6 -mt-6">
+      <div className="flex-1 px-6 -mt-6 relative z-10">
         <AnimatePresence mode="wait">
           <Motion.div
             key={step}

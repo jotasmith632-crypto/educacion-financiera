@@ -46,7 +46,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
         </div>
       </div>
 
-      <div className="p-6 -mt-4 max-w-md mx-auto space-y-6">
+      <div className="p-6 -mt-4 max-w-md mx-auto space-y-6 relative z-10">
         {/* Avatar Preview */}
         <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 text-center">
           <div className="w-36 h-36 rounded-full mx-auto mb-4 flex items-center justify-center relative border-4 border-purple-50 shadow-inner bg-gradient-to-tr from-purple-50 to-pink-50 overflow-hidden">

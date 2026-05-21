@@ -62,7 +62,7 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
         <p className="text-white/80 text-sm">Tu progreso y recompensas</p>
       </div>
 
-      <div className="p-6 -mt-4 space-y-5">
+      <div className="p-6 -mt-4 space-y-5 relative z-10">
         {/* 1. Bloque Superior de Resumen - PROTAGONISTA */}
         <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-3xl p-6 shadow-lg text-white">
           <div className="flex items-center justify-between mb-5">

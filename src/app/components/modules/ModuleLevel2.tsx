@@ -74,7 +74,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
         </Motion.div>
       </div>
 
-      <div className="px-6 -mt-8 pb-8 space-y-6">
+      <div className="px-6 -mt-8 pb-8 space-y-6 relative z-10">
         {!showResult ? (
           <>
             {/* Situation Card */}

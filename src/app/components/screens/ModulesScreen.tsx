@@ -36,7 +36,7 @@ export const ModulesScreen: React.FC<ModulesScreenProps> = ({
         <p className="text-white/80 text-sm">Completa todos para clasificar a las Olimpiadas</p>
       </div>
 
-      <div className="p-6 -mt-4 space-y-4">
+      <div className="p-6 -mt-4 space-y-4 relative z-10">
         {modules.map((module, index) => (
           <Motion.div
             key={module.id}

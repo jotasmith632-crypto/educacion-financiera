@@ -746,7 +746,7 @@ const [{ isOver }, drop] = useDrop(() => ({
           )}
         </div>
 
-        <div className="p-6 -mt-4 space-y-6 max-w-md mx-auto">
+        <div className="p-6 -mt-4 space-y-6 max-w-md mx-auto relative z-10">
           {/* Progress Indicator */}
           <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
             <div className="flex justify-between mb-2">
@@ -1035,7 +1035,7 @@ const [{ isOver }, drop] = useDrop(() => ({
           <p className="text-white/80 text-sm mt-1">Último paso para comenzar</p>
         </div>
 
-        <div className="p-6 -mt-4 max-w-md mx-auto space-y-4">
+        <div className="p-6 -mt-4 max-w-md mx-auto space-y-4 relative z-10">
           {/* Resumen de compra */}
           <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
             <h3 className="font-bold text-gray-800 mb-4">Resumen de compra</h3>
@@ -1295,7 +1295,7 @@ const [{ isOver }, drop] = useDrop(() => ({
         </div>
 
         {/* Progress Summary */}
-        <div className="px-6 -mt-16 mb-6">
+        <div className="px-6 -mt-16 mb-6 relative z-10">
           <Motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1411,7 +1411,7 @@ const [{ isOver }, drop] = useDrop(() => ({
     <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
       <ModuleHeader step={1} onBack={() => setCurrentScreen('modules')} />
 
-      <div className="p-6 max-w-md mx-auto -mt-4 space-y-6">
+      <div className="p-6 max-w-md mx-auto -mt-4 space-y-6 relative z-10">
         <Motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -1452,7 +1452,7 @@ const [{ isOver }, drop] = useDrop(() => ({
     <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
       <ModuleHeader step={2} onBack={() => setCurrentScreen('module-intro')} />
 
-      <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+      <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
         <div className="bg-white rounded-2xl p-6 shadow-lg">
           <h2 className="text-xl font-bold mb-4" style={{ color: '#6C4CF1' }}>
             ¿Por qué ahorrar?
@@ -1581,7 +1581,7 @@ const [{ isOver }, drop] = useDrop(() => ({
         <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
           <ModuleHeader step={3} onBack={() => setCurrentScreen('module-why')} />
 
-          <div className="p-6 max-w-md mx-auto -mt-4 space-y-6">
+          <div className="p-6 max-w-md mx-auto -mt-4 space-y-6 relative z-10">
             <Motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -1640,7 +1640,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={3} onBack={() => setCurrentScreen('module-why')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-6">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-6 relative z-10">
           {/* Progress Counter - Prominent */}
           <Motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -1836,7 +1836,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={4} onBack={() => setCurrentScreen('module-need-vs-want')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <h2 className="text-xl font-bold mb-2" style={{ color: '#6C4CF1' }}>
               ¿Para qué quieres ahorrar?
@@ -1959,7 +1959,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={5} onBack={() => setCurrentScreen('module-goal')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <h2 className="text-xl font-bold mb-2" style={{ color: '#6C4CF1' }}>
               Tu plan de ahorro
@@ -2062,7 +2062,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={6} onBack={() => setCurrentScreen('module-simulator')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <h2 className="text-xl font-bold mb-2" style={{ color: '#6C4CF1' }}>
               El enemigo de tu meta
@@ -2148,7 +2148,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={7} onBack={() => setCurrentScreen('module-expenses')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="text-center mb-6">
               <Motion.div
@@ -2283,7 +2283,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={8} onBack={() => setCurrentScreen('module-challenge-task')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <h2 className="text-xl font-bold mb-4" style={{ color: '#6C4CF1' }}>
               Así vas avanzando
@@ -2444,7 +2444,7 @@ const [{ isOver }, drop] = useDrop(() => ({
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         <ModuleHeader step={9} onBack={() => setCurrentScreen('module-progress')} />
 
-        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4">
+        <div className="p-6 max-w-md mx-auto -mt-4 space-y-4 relative z-10">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="text-center mb-6">
               <div className="text-5xl mb-3">🧠</div>
