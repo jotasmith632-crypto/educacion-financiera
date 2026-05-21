@@ -75,7 +75,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-md border border-purple-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-2xl mb-4 text-gray-800 text-center">¿Ahorrar o Invertir?</h3>
               <p className="text-gray-600 leading-relaxed text-center text-lg">
@@ -85,11 +85,11 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
               </p>
             </Motion.div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-green-50 p-4 rounded-2xl border border-green-100 text-center">
+              <div className="bg-green-50/80 backdrop-blur-md p-4 rounded-2xl border border-green-200/50 text-center">
                 <PiggyBank className="w-8 h-8 text-green-600 mx-auto mb-2" />
                 <span className="text-xs font-bold text-green-800 uppercase">Ahorro</span>
               </div>
-              <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 text-center">
+              <div className="bg-blue-50/80 backdrop-blur-md p-4 rounded-2xl border border-blue-200/50 text-center">
                 <Rocket className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                 <span className="text-xs font-bold text-blue-800 uppercase">Inversión</span>
               </div>
@@ -102,7 +102,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">El Ahorro: Tu escudo 🛡️</h3>
             <div className="space-y-4">
-              <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl shadow-sm border border-white/60 flex items-start gap-4">
                 <div className="bg-green-100 p-2 rounded-xl">
                   <ShieldCheck className="text-green-600 w-6 h-6" />
                 </div>
@@ -111,7 +111,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                   <p className="text-sm text-gray-500">Tu dinero siempre vale lo mismo y no se pierde.</p>
                 </div>
               </div>
-              <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl shadow-sm border border-white/60 flex items-start gap-4">
                 <div className="bg-green-100 p-2 rounded-xl">
                   <Zap className="text-green-600 w-6 h-6" />
                 </div>
@@ -121,7 +121,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                 </div>
               </div>
             </div>
-            <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100">
+            <div className="bg-amber-50/80 backdrop-blur-md p-4 rounded-2xl border border-amber-200/50">
               <p className="text-amber-800 text-xs flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                 Desventaja: Con el tiempo, las cosas suben de precio y tu ahorro compra menos cosas (Inflación).
@@ -135,7 +135,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">La Inversión: Tu motor 🚀</h3>
             <div className="space-y-4">
-              <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl shadow-sm border border-white/60 flex items-start gap-4">
                 <div className="bg-blue-100 p-2 rounded-xl">
                   <TrendingUp className="text-blue-600 w-6 h-6" />
                 </div>
@@ -144,7 +144,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                   <p className="text-sm text-gray-500">Tu dinero genera intereses o ganancias y "crece" solo.</p>
                 </div>
               </div>
-              <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl shadow-sm border border-white/60 flex items-start gap-4">
                 <div className="bg-blue-100 p-2 rounded-xl">
                   <AlertTriangle className="text-blue-600 w-6 h-6" />
                 </div>
@@ -154,7 +154,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                 </div>
               </div>
             </div>
-            <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 text-center">
+            <div className="bg-blue-50/80 backdrop-blur-md p-4 rounded-2xl border border-blue-200/50 text-center">
               <p className="text-blue-800 text-sm font-bold">
                 "Invertir es poner a tu dinero a trabajar para ti"
               </p>
@@ -171,13 +171,13 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
             <h3 className="font-bold text-xl text-gray-800 text-center">Mira la diferencia</h3>
             <p className="text-gray-600 text-center text-sm">Si empiezas con <strong>S/ 100</strong>, así crecen en {years} años:</p>
             
-            <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 space-y-8">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-lg border border-white/60 space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-end">
                   <span className="text-sm font-bold text-green-600 uppercase">Solo Ahorro</span>
                   <span className="text-xl font-black text-green-700">S/ {savingsValue.toFixed(2)}</span>
                 </div>
-                <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-4 bg-gray-100/50 rounded-full overflow-hidden">
                   <Motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${(savingsValue / (100 * Math.pow(1.1, 10))) * 100}%` }}
@@ -189,7 +189,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                   <span className="text-sm font-bold text-blue-600 uppercase">Inversión</span>
                   <span className="text-xl font-black text-blue-700">S/ {investmentValue.toFixed(2)}</span>
                 </div>
-                <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-4 bg-gray-100/50 rounded-full overflow-hidden">
                   <Motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${(investmentValue / (100 * Math.pow(1.1, 10))) * 100}%` }}
@@ -225,7 +225,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
                 { q: 'Dinero para tu universidad en 5 años', a: 'Inversión (Crecimiento)', desc: 'Tienes tiempo para que crezca y supere los riesgos.' },
                 { q: 'Tu primer sueldo de un trabajo extra', a: 'Ambos', desc: 'Una parte al escudo (ahorro) y otra al motor (inversión).' }
               ].map((item, i) => (
-                <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100">
+                <div key={i} className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-white/60">
                   <p className="text-sm font-bold text-gray-800 mb-2">{item.q}</p>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-md font-bold uppercase">
@@ -254,7 +254,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
               <p className="text-gray-500">Has dominado la base de la libertad financiera.</p>
             </Motion.div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100 space-y-4">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
               <h4 className="font-bold text-gray-800 border-b pb-2">Resumen de tu aprendizaje:</h4>
               <ul className="space-y-3">
                 {[
@@ -281,7 +281,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       {/* Header Fijo */}
       <div className="bg-gradient-to-br from-purple-600 to-blue-700 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
@@ -327,7 +327,7 @@ export const ModuleLevel4 = ({ onComplete, onBack }: ModuleLevel4Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-transparent">
         <PrimaryButton onClick={handleNext}>
           {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
           <ArrowRight className="ml-2 w-5 h-5" />

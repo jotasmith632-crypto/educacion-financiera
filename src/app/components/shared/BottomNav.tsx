@@ -9,8 +9,8 @@ interface BottomNavProps {
 
 export const BottomNav: React.FC<BottomNavProps> = ({ active, onNavigate }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 safe-area-bottom z-40">
-      <div className="flex items-center justify-around max-w-md mx-auto">
+    <div className="fixed bottom-4 left-4 right-4 bg-white/75 backdrop-blur-xl border border-white/60 p-3.5 rounded-3xl shadow-2xl z-40 max-w-md mx-auto transition-all duration-300">
+      <div className="flex items-center justify-around">
         <Motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => onNavigate('home')}

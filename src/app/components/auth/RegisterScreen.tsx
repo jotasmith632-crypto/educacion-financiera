@@ -59,11 +59,11 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
-      <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white p-6 pb-8">
+    <div className="min-h-screen bg-transparent">
+      <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white p-6 pb-8 rounded-b-3xl shadow-lg">
         <button
           onClick={onBack}
-          className="text-white/80 mb-4"
+          className="text-white/80 mb-4 hover:text-white transition-colors"
         >
           ← Atrás
         </button>
@@ -72,9 +72,9 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
       </div>
 
       <div className="p-6 -mt-4 max-w-md mx-auto space-y-4">
-        <form onSubmit={handleRegister} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 space-y-4">
+        <form onSubmit={handleRegister} className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
           {error && (
-            <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100">
+            <div className="bg-red-50/80 backdrop-blur-sm text-red-600 p-3 rounded-xl text-sm border border-red-100/50">
               {error}
             </div>
           )}
@@ -86,7 +86,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                 placeholder="Tu nombre"
                 required
               />
@@ -98,7 +98,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                 placeholder="tu@email.com"
                 required
               />
@@ -110,7 +110,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                 type="password"
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                 placeholder="Mínimo 6 caracteres"
                 required
               />
@@ -122,7 +122,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                 type="text"
                 value={formData.school}
                 onChange={(e) => setFormData({...formData, school: e.target.value})}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                 placeholder="Nombre de tu colegio"
               />
             </div>
@@ -133,7 +133,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                 <select
                   value={formData.grade}
                   onChange={(e) => setFormData({...formData, grade: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                 >
                   <option value="">Selecciona</option>
                   <option value="1">1° Sec</option>
@@ -149,7 +149,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
                   type="text"
                   value={formData.district}
                   onChange={(e) => setFormData({...formData, district: e.target.value})}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 backdrop-blur-sm border-2 border-white/40 focus:border-purple-400 outline-none transition-all"
                   placeholder="Tu distrito"
                 />
               </div>
@@ -164,14 +164,14 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
 
         <div className="relative py-2">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200"></div>
+            <div className="w-full border-t border-gray-200/50"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-[#F8F9FC] text-gray-500">O también</span>
+            <span className="px-3 bg-white/25 backdrop-blur-md border border-white/40 rounded-full text-gray-600 font-medium">O también</span>
           </div>
         </div>
 
-        <SecondaryButton onClick={handleGoogleLogin} disabled={loading}>
+        <SecondaryButton onClick={handleGoogleLogin} disabled={loading} className="bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/60">
           <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
           Registrarse con Google
         </SecondaryButton>
@@ -180,7 +180,7 @@ export const RegisterScreen = ({ onSuccess, onNavigateToLogin, onBack }: Registe
           ¿Ya tienes cuenta?{' '}
           <button
             onClick={onNavigateToLogin}
-            className="font-bold"
+            className="font-bold hover:underline"
             style={{ color: '#6C4CF1' }}
           >
             Inicia sesión

@@ -75,7 +75,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-8 shadow-md border border-yellow-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-3xl mb-4 text-gray-800">¡La Gran Decisión!</h3>
               <p className="text-gray-600 leading-relaxed text-lg">
@@ -95,7 +95,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800">Caso 1: El Regalo Inesperado</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60">
               <p className="text-gray-600 mb-6 italic">"Ganas un premio de S/ 200 en un concurso de talentos. ¿Qué es lo más inteligente que puedes hacer?"</p>
               
               <div className="space-y-3">
@@ -107,7 +107,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
                   <button 
                     key={i}
                     onClick={() => setAnswers({...answers, 2: i})}
-                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border-2 ${answers[2] === i ? 'border-yellow-500 bg-yellow-50 font-bold' : 'border-gray-100'}`}
+                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border ${answers[2] === i ? 'border-yellow-500 bg-yellow-50/80 backdrop-blur-sm font-bold shadow-sm' : 'border-white/40 bg-white/40 hover:bg-white/50 backdrop-blur-sm'}`}
                   >
                     {opt}
                   </button>
@@ -121,7 +121,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800">Caso 2: Inversión vs Ahorro</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60">
               <p className="text-gray-600 mb-6 italic">"Tienes ahorrado dinero para tu universidad (en 6 años). ¿Dónde conviene ponerlo?"</p>
               
               <div className="space-y-3">
@@ -133,7 +133,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
                   <button 
                     key={i}
                     onClick={() => setAnswers({...answers, 3: i})}
-                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border-2 ${answers[3] === i ? 'border-yellow-500 bg-yellow-50 font-bold' : 'border-gray-100'}`}
+                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border ${answers[3] === i ? 'border-yellow-500 bg-yellow-50/80 backdrop-blur-sm font-bold shadow-sm' : 'border-white/40 bg-white/40 hover:bg-white/50 backdrop-blur-sm'}`}
                   >
                     {opt}
                   </button>
@@ -147,7 +147,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800">Caso 3: Seguridad Bancaria</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60">
               <p className="text-gray-600 mb-6 italic">"¿Por qué es mejor usar un banco que guardar el dinero en casa?"</p>
               
               <div className="space-y-3">
@@ -159,7 +159,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
                   <button 
                     key={i}
                     onClick={() => setAnswers({...answers, 4: i})}
-                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border-2 ${answers[4] === i ? 'border-yellow-500 bg-yellow-50 font-bold' : 'border-gray-100'}`}
+                    className={`w-full p-4 rounded-2xl text-left text-sm transition-all border ${answers[4] === i ? 'border-yellow-500 bg-yellow-50/80 backdrop-blur-sm font-bold shadow-sm' : 'border-white/40 bg-white/40 hover:bg-white/50 backdrop-blur-sm'}`}
                   >
                     {opt}
                   </button>
@@ -173,7 +173,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
         return (
           <div className="space-y-6 text-center">
             <h3 className="font-bold text-2xl text-gray-800">Resumen de tu Perfil</h3>
-            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-8 rounded-3xl shadow-xl text-white relative overflow-hidden">
+            <div className="bg-gradient-to-br from-yellow-400/90 to-orange-500/90 backdrop-blur-md p-8 rounded-3xl shadow-xl text-white border border-white/40 relative overflow-hidden">
               <div className="absolute top-0 right-0 opacity-20 -mr-10 -mt-10">
                 <Award className="w-40 h-40" />
               </div>
@@ -213,7 +213,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
               <p className="text-gray-500">Has desbloqueado el acceso a las Olimpiadas Financieras.</p>
             </Motion.div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100 space-y-4">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
               <h4 className="font-bold text-gray-800 border-b pb-2">Logros obtenidos:</h4>
               <ul className="space-y-3">
                 {[
@@ -241,7 +241,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       {/* Header Fijo */}
       <div className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
@@ -287,7 +287,7 @@ export const ModuleLevel7 = ({ onComplete, onBack }: ModuleLevel7Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-transparent">
         <PrimaryButton 
           onClick={handleNext}
           disabled={(step === 2 && answers[2] === undefined) || (step === 3 && answers[3] === undefined) || (step === 4 && answers[4] === undefined)}

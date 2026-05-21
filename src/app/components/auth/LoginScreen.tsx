@@ -65,9 +65,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
-      {/* Fondo interactivo de partículas en red */}
-      <InteractiveParticlesBackground />
+    <div className="min-h-screen relative overflow-hidden bg-transparent">
 
       {/* Orbes flotantes difuminados en el fondo para estética premium */}
       <div className="absolute top-[20%] left-[-15%] w-[280px] h-[280px] rounded-full bg-purple-300/30 blur-[80px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />

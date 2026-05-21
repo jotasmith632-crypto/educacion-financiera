@@ -100,7 +100,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-md border border-blue-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-2xl mb-4 text-gray-800 text-center">¿Qué es una meta financiera?</h3>
               <p className="text-gray-600 leading-relaxed text-center">
@@ -128,7 +128,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 2:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <h3 className="font-bold text-xl mb-4 text-gray-800">Clasifica las metas</h3>
               <p className="text-sm text-gray-600 mb-6">
                 ¿Cuánto tiempo crees que toma ahorrar para esto? Clasifícalas en <b>Corto plazo</b> (semanas/meses) o <b>Largo plazo</b> (años).
@@ -223,7 +223,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 4:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center border border-pink-200 overflow-hidden">
                   <AvatarRenderer avatar={valeriaAvatar} size={64} />
@@ -263,7 +263,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 5:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <h3 className="font-bold text-xl mb-4 text-gray-800">Analiza la situación</h3>
               <div className="space-y-6">
                 <div>
@@ -324,7 +324,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 6:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <div className="text-center mb-6">
                 <div className="inline-block p-3 bg-purple-100 rounded-full mb-2">
                   <TrendingUp className="w-8 h-8 text-purple-600" />
@@ -369,7 +369,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 7:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <h3 className="font-bold text-xl mb-4 text-gray-800">Ahorro vs. Crédito</h3>
               <p className="text-sm text-gray-600 mb-6">
                 Valeria tiene una oferta: su hermano le presta los S/ 100 hoy, pero ella debe devolverle <b>S/ 120</b> en un mes.
@@ -410,7 +410,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 8:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <h3 className="font-bold text-xl mb-4 text-gray-800">Construye tu propia meta</h3>
               <p className="text-sm text-gray-600 mb-6">¡Es tu turno! Define una meta que quieras lograr.</p>
               <div className="space-y-4">
@@ -458,7 +458,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
       case 9:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
               <div className="flex items-center gap-3 mb-6">
                 <Lightbulb className="w-8 h-8 text-yellow-500" />
                 <h3 className="font-bold text-xl text-gray-800">Reflexión Final</h3>
@@ -511,7 +511,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
               <h2 className="text-3xl font-bold text-gray-800 mb-2">¡Nivel 1 Completado!</h2>
               <p className="text-gray-600">Has dado el primer paso para ser un maestro de tus finanzas.</p>
             </div>
-            <div className="bg-white rounded-3xl p-6 shadow-xl border border-yellow-100 max-w-xs mx-auto">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 max-w-xs mx-auto">
               <p className="text-sm font-bold text-gray-500 uppercase mb-2">Recompensa</p>
               <p className="text-4xl font-black text-yellow-500 mb-1">+100</p>
               <p className="text-sm font-bold text-gray-800">Puntos de Sabiduría</p>
@@ -529,7 +529,7 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FC] pb-12">
+    <div className="min-h-screen bg-transparent pb-12">
       {/* Dynamic Header */}
       <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 pb-12 rounded-b-[40px] shadow-lg">
         <div className="flex items-center justify-between mb-8">

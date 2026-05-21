@@ -107,7 +107,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-md border border-rose-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-2xl mb-4 text-gray-800 text-center">La Bolsa de Valores</h3>
               <p className="text-gray-600 leading-relaxed text-center text-lg">
@@ -115,7 +115,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
                 Eso es la Bolsa: un mercado donde se compran y venden <strong>acciones</strong>.
               </p>
             </Motion.div>
-            <div className="bg-rose-50 rounded-2xl p-4 border border-rose-100">
+            <div className="bg-rose-50/80 backdrop-blur-md rounded-2xl p-4 border border-rose-200/50">
               <p className="text-rose-800 text-sm font-medium flex items-center gap-2">
                 <Building className="w-5 h-5 flex-shrink-0" />
                 Una acción es un "pedacito" de una empresa. Si a la empresa le va bien, tu acción vale más.
@@ -129,7 +129,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">¿Por qué cambia el precio?</h3>
             <div className="grid grid-cols-1 gap-4">
-              <div className="bg-white p-5 rounded-2xl border-l-4 border-green-500 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-white/60 border-l-4 border-l-green-500 shadow-sm">
                 <div className="flex items-center gap-3 mb-1">
                   <TrendingUp className="text-green-600 w-5 h-5" />
                   <h4 className="font-bold text-gray-800">Sube si...</h4>
@@ -137,7 +137,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
                 <p className="text-xs text-gray-500">Mucha gente quiere comprar (Alta demanda) o la empresa tiene buenas noticias.</p>
               </div>
 
-              <div className="bg-white p-5 rounded-2xl border-l-4 border-red-500 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-white/60 border-l-4 border-l-red-500 shadow-sm">
                 <div className="flex items-center gap-3 mb-1">
                   <TrendingDown className="text-red-600 w-5 h-5" />
                   <h4 className="font-bold text-gray-800">Baja si...</h4>
@@ -145,7 +145,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
                 <p className="text-xs text-gray-500">La gente tiene miedo y vende (Alta oferta) o la empresa tiene problemas.</p>
               </div>
             </div>
-            <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 text-center">
+            <div className="bg-blue-50/80 backdrop-blur-md p-4 rounded-2xl border border-blue-200/50 text-center">
               <p className="text-blue-800 text-xs font-bold italic">
                 "La clave es comprar barato y vender caro"
               </p>
@@ -166,7 +166,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-3xl shadow-xl border-2 border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/60">
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <p className="text-xs text-gray-400 font-bold uppercase">Precio Acción "EcoGames"</p>
@@ -240,7 +240,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">La clave es la paciencia</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-md border border-blue-50 relative overflow-hidden">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60 relative overflow-hidden">
               <div className="absolute -right-4 -top-4 opacity-10">
                 <Clock className="w-32 h-32 text-blue-600" />
               </div>
@@ -253,11 +253,11 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-2xl border border-red-100 text-center">
+              <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/60 text-center">
                 <p className="text-[10px] text-red-600 font-bold mb-1 uppercase">A corto plazo</p>
                 <div className="text-lg font-black">🎢 Montaña Rusa</div>
               </div>
-              <div className="bg-white p-4 rounded-2xl border border-green-100 text-center">
+              <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/60 text-center">
                 <p className="text-[10px] text-green-600 font-bold mb-1 uppercase">A largo plazo</p>
                 <div className="text-lg font-black">📈 Crecimiento</div>
               </div>
@@ -269,14 +269,14 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">No pongas todos los huevos...</h3>
-            <div className="bg-amber-50 p-6 rounded-3xl border-2 border-amber-100 text-center">
+            <div className="bg-amber-50/80 backdrop-blur-md p-6 rounded-3xl border border-amber-200/50 text-center">
               <div className="text-5xl mb-4">🧺🥚🥚🥚</div>
               <h4 className="font-black text-amber-800 mb-2">DIVERSIFICACIÓN</h4>
               <p className="text-gray-600 text-sm">
                 Significa invertir en varias cosas distintas. Si una empresa cae, las otras pueden salvarte.
               </p>
             </div>
-            <div className="bg-white p-4 rounded-2xl border border-gray-100 flex items-center gap-3">
+            <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/60 flex items-center gap-3">
               <div className="bg-green-100 p-2 rounded-lg">
                 <Check className="text-green-600 w-4 h-4" />
               </div>
@@ -300,7 +300,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
               <p className="text-gray-500">¡Ya eres un mini inversor de la bolsa!</p>
             </Motion.div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100 space-y-4">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
               <h4 className="font-bold text-gray-800 border-b pb-2">Resumen de tu aprendizaje:</h4>
               <ul className="space-y-3">
                 {[
@@ -327,7 +327,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       {/* Header Fijo */}
       <div className="bg-gradient-to-br from-rose-600 to-red-700 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
@@ -373,7 +373,7 @@ export const ModuleLevel6 = ({ onComplete, onBack }: ModuleLevel6Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-transparent">
         <PrimaryButton 
           onClick={handleNext}
           disabled={step === 3 && day < 5}

@@ -75,14 +75,14 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-md border border-indigo-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-2xl mb-4 text-gray-800 text-center">Tu dinero en el Banco</h3>
               <p className="text-gray-600 leading-relaxed text-center text-lg">
                 Un banco es mucho más que un edificio. Es un lugar <strong>seguro</strong> para guardar tu dinero y hacerlo crecer.
               </p>
             </Motion.div>
-            <div className="bg-indigo-50 rounded-2xl p-4 border border-indigo-100">
+            <div className="bg-indigo-50/80 backdrop-blur-md rounded-2xl p-4 border border-indigo-200/50">
               <p className="text-indigo-800 text-sm font-medium flex items-center gap-2">
                 <Lock className="w-5 h-5 flex-shrink-0" />
                 Dato: El dinero en el banco está protegido por el Estado. Si guardas bajo el colchón, ¡está en riesgo!
@@ -96,7 +96,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">Dos opciones comunes</h3>
             <div className="space-y-4">
-              <div className="bg-white p-5 rounded-3xl shadow-sm border-2 border-green-100">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-white/60">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="bg-green-100 p-2 rounded-xl">
                     <CreditCard className="text-green-600 w-5 h-5" />
@@ -110,7 +110,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
                 </ul>
               </div>
 
-              <div className="bg-white p-5 rounded-3xl shadow-sm border-2 border-amber-100">
+              <div className="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-white/60">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="bg-amber-100 p-2 rounded-xl">
                     <Landmark className="text-amber-600 w-5 h-5" />
@@ -131,7 +131,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">¿Qué son los intereses? 📈</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-md border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60">
               <p className="text-gray-600 text-center mb-6">Es el "alquiler" que el banco te paga por dejar que usen tu dinero para préstamos.</p>
               
               <div className="relative pt-10 pb-4">
@@ -173,31 +173,31 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
             <div className="grid grid-cols-1 gap-4">
               <button 
                 onClick={() => setSelectedProduct('savings')}
-                className={`p-5 rounded-3xl text-left transition-all border-3 ${selectedProduct === 'savings' ? 'border-indigo-600 bg-indigo-50 ring-4 ring-indigo-100' : 'border-gray-100 bg-white'}`}
+                className={`p-5 rounded-3xl text-left transition-all border ${selectedProduct === 'savings' ? 'border-indigo-600 bg-indigo-50/80 backdrop-blur-sm ring-4 ring-indigo-100/50 font-bold' : 'border-white/40 bg-white/40 hover:bg-white/50 backdrop-blur-sm'}`}
               >
                 <div className="flex justify-between items-start mb-2">
                   <span className="font-bold text-gray-800">Cuenta Ahorro Libre</span>
                   <span className="bg-green-100 text-green-700 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">1% Interés</span>
                 </div>
-                <p className="text-xs text-gray-500">Puedes sacar el dinero mañana si quieres comprar un juego.</p>
+                <p className="text-xs text-gray-500 font-normal">Puedes sacar el dinero mañana si quieres comprar un juego.</p>
               </button>
 
               <button 
                 onClick={() => setSelectedProduct('fixed')}
-                className={`p-5 rounded-3xl text-left transition-all border-3 ${selectedProduct === 'fixed' ? 'border-indigo-600 bg-indigo-50 ring-4 ring-indigo-100' : 'border-gray-100 bg-white'}`}
+                className={`p-5 rounded-3xl text-left transition-all border ${selectedProduct === 'fixed' ? 'border-indigo-600 bg-indigo-50/80 backdrop-blur-sm ring-4 ring-indigo-100/50 font-bold' : 'border-white/40 bg-white/40 hover:bg-white/50 backdrop-blur-sm'}`}
               >
                 <div className="flex justify-between items-start mb-2">
                   <span className="font-bold text-gray-800">Depósito a 1 Año</span>
                   <span className="bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">8% Interés</span>
                 </div>
-                <p className="text-xs text-gray-500">No puedes tocarlo en 12 meses, ideal para tu meta de la Laptop.</p>
+                <p className="text-xs text-gray-500 font-normal">No puedes tocarlo en 12 meses, ideal para tu meta de la Laptop.</p>
               </button>
             </div>
 
             {selectedProduct && (
               <Motion.div 
                 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                className="bg-indigo-600 text-white p-5 rounded-3xl shadow-lg"
+                className="bg-indigo-600/90 backdrop-blur-md text-white p-5 rounded-3xl shadow-lg border border-indigo-400/50"
               >
                 <h4 className="font-bold mb-2 flex items-center gap-2 text-sm">
                   <Trophy className="w-4 h-4" /> 
@@ -232,7 +232,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
                   correct: 1
                 }
               ].map((item, i) => (
-                <div key={i} className="bg-white p-5 rounded-2xl border border-gray-100">
+                <div key={i} className="bg-white/80 backdrop-blur-md p-5 rounded-2xl border border-white/60">
                   <p className="text-sm font-bold text-gray-800 mb-3">{item.q}</p>
                   <div className="flex gap-2">
                     {item.options.map((opt, idx) => (
@@ -262,7 +262,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
               <p className="text-gray-500">Ahora sabes cómo usar los bancos a tu favor.</p>
             </Motion.div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100 space-y-4">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
               <h4 className="font-bold text-gray-800 border-b pb-2">Resumen de tu aprendizaje:</h4>
               <ul className="space-y-3">
                 {[
@@ -289,7 +289,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       {/* Header Fijo */}
       <div className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
@@ -335,7 +335,7 @@ export const ModuleLevel5 = ({ onComplete, onBack }: ModuleLevel5Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-transparent">
         <PrimaryButton 
           onClick={handleNext}
           disabled={step === 4 && !selectedProduct}

@@ -27,8 +27,8 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8">
+    <div className="min-h-screen bg-transparent pb-20">
+      <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8 rounded-b-3xl shadow-lg">
         <div className="flex items-center justify-between mb-4">
           <Motion.button
             whileTap={{ scale: 0.95 }}
@@ -61,7 +61,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
 
       <div className="p-6 -mt-4 max-w-md mx-auto space-y-6 relative z-10">
         {/* Avatar Preview */}
-        <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 text-center">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-white/60 text-center">
           <div className="w-36 h-36 rounded-full mx-auto mb-4 flex items-center justify-center relative border-4 border-purple-50 shadow-inner bg-gradient-to-tr from-purple-50 to-pink-50 overflow-hidden">
             <AvatarRenderer avatar={avatar} size={120} />
           </div>
@@ -71,7 +71,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
         {/* Customization Options */}
         <div className="space-y-5">
           {/* Face */}
-          <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
             <h3 className="font-bold text-gray-800 mb-3 text-sm flex items-center gap-2">
               <span className="text-xl">😊</span>
               Cara
@@ -86,8 +86,8 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   }}
                   className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.face === face
-                      ? 'bg-purple-100 ring-2 ring-purple-400'
-                      : 'bg-gray-50 hover:bg-gray-100'
+                      ? 'bg-purple-100/80 ring-2 ring-purple-400 backdrop-blur-sm'
+                      : 'bg-white/40 border border-white/30 hover:bg-white/60 backdrop-blur-sm'
                   }`}
                 >
                   <AvatarRenderer avatar={{ ...avatar, face }} size={44} />
@@ -97,7 +97,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
           </div>
 
           {/* Skin Color */}
-          <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
             <h3 className="font-bold text-gray-800 mb-3 text-sm flex items-center gap-2">
               <span className="text-xl">🎨</span>
               Color de piel
@@ -111,7 +111,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                     setAvatar({ ...avatar, skin });
                   }}
                   className={`w-12 h-12 rounded-xl transition-all flex items-center justify-center ${
-                    avatar.skin === skin ? 'ring-2 ring-purple-500 scale-110' : ''
+                    avatar.skin === skin ? 'ring-2 ring-purple-500 scale-110 shadow-lg' : 'border border-white/30 hover:scale-105'
                   }`}
                   style={{ backgroundColor: skin }}
                 >
@@ -122,7 +122,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
           </div>
 
           {/* Hair */}
-          <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
             <h3 className="font-bold text-gray-800 mb-3 text-sm flex items-center gap-2">
               <span className="text-xl">💇</span>
               Cabello
@@ -137,8 +137,8 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   }}
                   className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.hair === hair
-                      ? 'bg-purple-100 ring-2 ring-purple-400'
-                      : 'bg-gray-50 hover:bg-gray-100'
+                      ? 'bg-purple-100/80 ring-2 ring-purple-400 backdrop-blur-sm'
+                      : 'bg-white/40 border border-white/30 hover:bg-white/60 backdrop-blur-sm'
                   }`}
                 >
                   <AvatarRenderer avatar={{ ...avatar, hair }} size={44} />
@@ -148,7 +148,7 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
           </div>
 
           {/* Accessories */}
-          <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
             <h3 className="font-bold text-gray-800 mb-3 text-sm flex items-center gap-2">
               <span className="text-xl">👑</span>
               Accesorios
@@ -163,8 +163,8 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   }}
                   className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.accessory === accessory
-                      ? 'bg-yellow-100 ring-2 ring-yellow-400'
-                      : 'bg-gray-50 hover:bg-gray-100'
+                      ? 'bg-yellow-100/80 ring-2 ring-yellow-400 backdrop-blur-sm'
+                      : 'bg-white/40 border border-white/30 hover:bg-white/60 backdrop-blur-sm'
                   }`}
                 >
                   <AvatarRenderer avatar={{ ...avatar, accessory }} size={44} />

@@ -55,7 +55,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
+    <div className="min-h-screen bg-transparent">
       {/* Header */}
       <div className="bg-gradient-to-br from-amber-500 to-orange-600 pt-12 pb-16 px-6 relative overflow-hidden">
         <BackButton onClick={onBack} />
@@ -81,7 +81,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-lg"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -100,7 +100,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-white rounded-3xl p-6 shadow-lg"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-lg mb-4">
                 Selecciona los gastos que podrías reducir o eliminar
@@ -116,8 +116,8 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
                       onClick={() => toggleExpense(expense.id)}
                       className={`w-full p-4 rounded-2xl border-2 transition-all ${
                         isSelected
-                          ? 'border-orange-500 bg-orange-50'
-                          : 'border-gray-200 bg-white hover:border-orange-300'
+                          ? 'border-orange-500 bg-orange-50/80 backdrop-blur-sm'
+                          : 'border-white/40 bg-white/40 hover:border-orange-300 backdrop-blur-sm'
                       }`}
                     >
                       <div className="flex items-center gap-4">
@@ -147,7 +147,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               <Motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl p-5"
+                className="bg-gradient-to-br from-orange-100/80 to-amber-100/80 backdrop-blur-md rounded-2xl p-5 border border-white/40"
               >
                 <div className="text-center">
                   <div className="text-sm text-orange-700 mb-1">Podrías ahorrar</div>
@@ -184,17 +184,17 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               </p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white rounded-2xl p-4 shadow-sm border border-orange-200">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-orange-200">
                   <div className="text-orange-700 text-xs font-bold uppercase tracking-wider mb-1">Ahorro semanal</div>
                   <div className="text-3xl font-black text-slate-800">S/ {totalWeeklySavings.toFixed(2)}</div>
                 </div>
-                <div className="bg-white rounded-2xl p-4 shadow-sm border border-orange-200">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-orange-200">
                   <div className="text-orange-700 text-xs font-bold uppercase tracking-wider mb-1">Ahorro mensual</div>
                   <div className="text-3xl font-black text-slate-800">S/ {totalMonthlySavings.toFixed(2)}</div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-5 shadow-sm border border-orange-200">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-sm border border-orange-200">
                 <div className="text-orange-700 text-xs font-bold uppercase tracking-wider mb-2 text-center">En un año ahorrarías</div>
                 <div className="text-5xl font-black text-slate-800 text-center">S/ {(totalMonthlySavings * 12).toFixed(2)}</div>
               </div>
@@ -205,7 +205,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-3xl p-6 shadow-lg"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
@@ -238,7 +238,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-blue-50 rounded-3xl p-6 shadow-lg"
+              className="bg-blue-50/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-blue-200/50"
             >
               <div className="flex items-center gap-3 mb-3">
                 <Lightbulb className="w-6 h-6 text-blue-600" />
@@ -256,7 +256,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="bg-white rounded-3xl p-6 shadow-lg text-center"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 text-center"
             >
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Trophy className="w-8 h-8 text-yellow-600" />

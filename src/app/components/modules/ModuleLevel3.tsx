@@ -99,7 +99,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
             <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-6 shadow-md border border-blue-50"
+              className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
             >
               <h3 className="font-bold text-2xl mb-4 text-gray-800 text-center">¿Qué es un Plan de Ahorro?</h3>
               <p className="text-gray-600 leading-relaxed text-center text-lg">
@@ -107,7 +107,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                 Te ayuda a decidir cuánto gastar hoy y cuánto guardar para tus metas del futuro.
               </p>
             </Motion.div>
-            <div className="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+            <div className="bg-blue-50/80 backdrop-blur-md rounded-2xl p-4 border border-blue-200/50">
               <p className="text-blue-800 text-sm font-medium flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 flex-shrink-0" />
                 Sin un plan, el dinero tiende a "desaparecer" en pequeñas cosas sin que te des cuenta.
@@ -134,7 +134,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+                  className="bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-white/60 flex items-center gap-4"
                 >
                   <PremiumIcon emoji={item.icon} size={20} showBackground={true} />
                   <div>
@@ -154,7 +154,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
             <p className="text-gray-600 text-center">Una forma experta de dividir tu dinero:</p>
             
             <div className="space-y-4">
-              <div className="bg-green-50 p-5 rounded-2xl border-l-4 border-green-500">
+              <div className="bg-green-50/80 backdrop-blur-md p-5 rounded-2xl border border-green-200/50 border-l-4 border-l-green-500">
                 <div className="flex items-center gap-3 mb-2">
                   <Check className="text-green-600 w-6 h-6" />
                   <h4 className="font-bold text-green-800">50% para Necesidades</h4>
@@ -162,7 +162,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                 <p className="text-sm text-green-700">Cosas que SIEMPRE necesitas (pasajes, merienda escolar, materiales).</p>
               </div>
 
-              <div className="bg-yellow-50 p-5 rounded-2xl border-l-4 border-yellow-500">
+              <div className="bg-yellow-50/80 backdrop-blur-md p-5 rounded-2xl border border-yellow-200/50 border-l-4 border-l-yellow-500">
                 <div className="flex items-center gap-3 mb-2">
                   <Star className="text-yellow-600 w-6 h-6" />
                   <h4 className="font-bold text-yellow-800">30% para Deseos</h4>
@@ -170,7 +170,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                 <p className="text-sm text-yellow-700">Cosas que te gustan pero podrías vivir sin ellas (un dulce, un juguete, cine).</p>
               </div>
 
-              <div className="bg-blue-50 p-5 rounded-2xl border-l-4 border-blue-500">
+              <div className="bg-blue-50/80 backdrop-blur-md p-5 rounded-2xl border border-blue-200/50 border-l-4 border-l-blue-500">
                 <div className="flex items-center gap-3 mb-2">
                   <PiggyBank className="text-blue-600 w-6 h-6" />
                   <h4 className="font-bold text-blue-800">20% para Ahorro</h4>
@@ -188,8 +188,8 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
             <h3 className="font-bold text-xl text-gray-800 text-center">¡Haz tu propio plan!</h3>
             <p className="text-gray-600 text-center mb-4">Tienes <strong>S/ {totalBudget}</strong> imaginarios. Distribúyelos:</p>
             
-            <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 space-y-6">
-              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-xl mb-4">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-lg border border-white/60 space-y-6">
+              <div className="flex justify-between items-center bg-gray-50/60 backdrop-blur-sm p-3 rounded-xl mb-4 border border-gray-100/30">
                 <span className="font-bold text-gray-500">Por repartir:</span>
                 <span className={`text-xl font-black ${remaining === 0 ? 'text-green-500' : 'text-blue-600'}`}>S/ {remaining}</span>
               </div>
@@ -248,7 +248,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
         return (
           <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-800 text-center">El secreto del éxito</h3>
-            <div className="bg-white p-6 rounded-3xl shadow-md border border-purple-50">
+            <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-md border border-white/60">
               <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 mx-auto">
                 <Clock className="w-8 h-8 text-purple-600" />
               </div>
@@ -261,18 +261,18 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-2xl border border-gray-100 text-center flex flex-col items-center justify-center">
+              <div className="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/40 text-center flex flex-col items-center justify-center">
                 <p className="text-xs text-gray-500 mb-2">Sin Plan</p>
                 <div className="flex items-center justify-center gap-1 mb-2">
                   <PremiumIcon emoji="💰" size={14} showBackground={false} className="opacity-60 grayscale" />
                   <span className="text-xs text-gray-400">➔</span>
                   <PremiumIcon emoji="🛒" size={14} showBackground={false} className="opacity-60 grayscale" />
                   <span className="text-xs text-gray-400">➔</span>
-                  <span className="text-xs font-black text-red-500 bg-red-50 px-1 rounded">❓</span>
+                  <span className="text-xs font-black text-red-500 bg-red-50/80 px-1 rounded">❓</span>
                 </div>
                 <p className="text-[10px] text-gray-400">Gasto total</p>
               </div>
-              <div className="bg-white p-4 rounded-2xl border border-purple-200 text-center ring-2 ring-purple-50 flex flex-col items-center justify-center">
+              <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-purple-200 text-center ring-2 ring-purple-50/50 flex flex-col items-center justify-center">
                 <p className="text-xs text-purple-600 font-bold mb-2">Con Plan</p>
                 <div className="flex items-center justify-center gap-1 mb-2">
                   <PremiumIcon emoji="💰" size={14} showBackground={false} />
@@ -302,7 +302,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
               <p className="text-gray-500">Ahora sabes cómo crear un plan de ahorro sólido.</p>
             </Motion.div>
 
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100 space-y-4">
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60 space-y-4">
               <h4 className="font-bold text-gray-800 border-b pb-2">Resumen de tu aprendizaje:</h4>
               <ul className="space-y-3">
                 {[
@@ -329,7 +329,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-transparent flex flex-col">
       {/* Header Fijo */}
       <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 pb-12">
         <div className="flex items-center justify-between mb-6">
@@ -375,7 +375,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
       </div>
 
       {/* Footer con Botón Siguiente */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-transparent">
         <PrimaryButton 
           onClick={handleNext}
           disabled={step === 4 && totalBudget - (budget.needs + budget.wants + budget.savings) > 0}

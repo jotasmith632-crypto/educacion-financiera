@@ -1297,9 +1297,9 @@ const [{ isOver }, drop] = useDrop(() => ({
     const progressPercentage = Math.round((completedLevelsCount / moduleLevels.length) * 100);
 
     return (
-      <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
+      <div className="min-h-screen bg-transparent">
         {/* Header */}
-        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 pt-12 pb-24 px-6 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 pt-12 pb-24 px-6 relative overflow-hidden rounded-b-[40px] shadow-lg">
           <BackButton onClick={() => setCurrentScreen('modules')} />
 
           <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -mr-32 -mt-32"></div>
@@ -1339,7 +1339,7 @@ const [{ isOver }, drop] = useDrop(() => ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white rounded-3xl p-6 shadow-xl"
+            className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60"
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-600 font-medium">Progreso del módulo</span>
@@ -1380,8 +1380,8 @@ const [{ isOver }, drop] = useDrop(() => ({
                     }
                   }}
                   disabled={isLocked}
-                  className={`w-full bg-white rounded-3xl p-5 shadow-lg transition-all ${
-                    isLocked ? 'opacity-60' : 'hover:shadow-xl active:scale-98'
+                  className={`w-full bg-white/80 backdrop-blur-md border border-white/60 rounded-3xl p-5 shadow-lg transition-all ${
+                    isLocked ? 'opacity-60' : 'hover:shadow-xl hover:scale-[1.02] active:scale-98'
                   }`}
                 >
                   <div className="flex items-start gap-4">
@@ -2632,9 +2632,7 @@ const [{ isOver }, drop] = useDrop(() => ({
     }, []);
 
     return (
-      <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
-        {/* Fondo interactivo de partículas de oro de la victoria */}
-        <InteractiveParticlesBackground particleColor="rgba(245, 158, 11, 0.35)" lineColor="rgba(245, 158, 11, 0.12)" />
+      <div className="min-h-screen relative overflow-hidden bg-transparent">
 
         {/* Fondos difuminados sutiles */}
         <div className="absolute top-[-5%] left-[-5%] w-[250px] h-[250px] rounded-full bg-purple-200/30 blur-[70px] pointer-events-none" />
@@ -2735,7 +2733,12 @@ const [{ isOver }, drop] = useDrop(() => ({
           </div>
         </div>
       ) : (
-        <div className="font-sans min-h-screen relative">
+        <div className="font-sans min-h-screen relative bg-[#F8F9FC]">
+          {/* Fondo interactivo global de red de nodos */}
+          <InteractiveParticlesBackground 
+            particleColor={currentScreen === 'module-complete' ? 'rgba(245, 158, 11, 0.35)' : 'rgba(108, 76, 241, 0.35)'} 
+            lineColor={currentScreen === 'module-complete' ? 'rgba(245, 158, 11, 0.12)' : 'rgba(108, 76, 241, 0.12)'} 
+          />
           <div>
             {/* Onboarding Screens */}
             {currentScreen === 'onboarding-1' && <Onboarding1 />}

@@ -30,7 +30,7 @@ export const ModulesScreen: React.FC<ModulesScreenProps> = ({
   onNavigate
 }) => {
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-transparent pb-20">
       <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8">
         <h1 className="text-2xl font-bold mb-2">Módulos de Aprendizaje</h1>
         <p className="text-white/80 text-sm">Completa todos para clasificar a las Olimpiadas</p>
@@ -43,7 +43,7 @@ export const ModulesScreen: React.FC<ModulesScreenProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden"
+            className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-white/60 overflow-hidden"
           >
             <div className="p-5">
               <div className="flex items-start gap-4 mb-4">

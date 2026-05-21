@@ -72,8 +72,8 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FC] pb-20">
-      <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8">
+    <div className="min-h-screen bg-transparent pb-20">
+      <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8 rounded-b-3xl shadow-lg">
         <h1 className="text-2xl font-bold mb-2">Mis Logros</h1>
         <p className="text-white/80 text-sm">Tu progreso y recompensas</p>
       </div>
@@ -134,7 +134,7 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
         </div>
 
         {/* 2. Sección de Insignias - GRID COMPACTO */}
-        <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-gray-800 text-lg">Mis Insignias</h3>
             <span className="text-sm font-bold px-3 py-1 rounded-full" style={{ backgroundColor: '#EFEAFE', color: '#6C4CF1' }}>
@@ -194,12 +194,12 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
         </div>
 
         {/* 3. Sección de Progreso por Módulos */}
-        <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 shadow-lg border border-white/60">
           <h3 className="font-bold text-gray-800 mb-3 text-lg">Módulos</h3>
 
           <div className="space-y-2">
             {modules.map((module) => (
-              <div key={module.id} className="flex items-center gap-3 p-3 bg-[#F8F9FC] rounded-xl border border-gray-50">
+              <div key={module.id} className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/40">
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: module.bgColor }}
@@ -238,9 +238,9 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
         </div>
 
         {/* 4. Sección de Recomendación */}
-        <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-5 border-2" style={{ borderColor: '#CFC3FF' }}>
+        <div className="bg-gradient-to-br from-purple-50/70 to-indigo-50/70 backdrop-blur-md rounded-3xl p-5 border border-white/60">
           <div className="flex items-start gap-3 mb-4">
-            <div className="bg-white p-2.5 rounded-xl shadow-sm">
+            <div className="bg-white/70 backdrop-blur-sm p-2.5 rounded-xl shadow-sm border border-white/40">
               <Lightbulb className="w-5 h-5" style={{ color: '#6C4CF1' }} />
             </div>
             <div className="flex-1">
@@ -251,7 +251,7 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-purple-50">
+          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-white/50">
             <div className="flex items-center gap-3 mb-3">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center animate-pulse"
@@ -290,7 +290,7 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 350 }}
-              className="w-full max-w-xs bg-white rounded-3xl p-6 shadow-2xl border border-purple-100 flex flex-col items-center text-center space-y-6 relative overflow-hidden"
+              className="w-full max-w-xs bg-white/90 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border border-white/60 flex flex-col items-center text-center space-y-6 relative overflow-hidden"
             >
               {/* Brillos de fondo */}
               <div className="absolute -top-12 -left-12 w-32 h-32 bg-purple-200/40 rounded-full blur-2xl pointer-events-none" />

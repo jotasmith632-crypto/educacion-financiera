@@ -22,8 +22,8 @@ interface OlympicsScreenProps {
 
 export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, onNavigate }) => {
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 text-white p-6 pb-8">
+    <div className="min-h-screen bg-transparent pb-20">
+      <div className="bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 text-white p-6 pb-8 rounded-b-3xl shadow-lg">
         <div className="flex items-center gap-3 mb-3">
           <div className="text-4xl">🏆</div>
           <div>
@@ -35,7 +35,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
 
       <div className="p-6 -mt-4 space-y-6 relative z-10">
         {/* Status Card */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-gray-800">Tu estado</h3>
             <span className="bg-yellow-100 text-yellow-700 text-sm px-3 py-1 rounded-full font-medium">
@@ -60,10 +60,10 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
         </div>
 
         {/* Requirements Checklist */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
           <h3 className="font-bold text-gray-800 mb-4">Requisitos para clasificar</h3>
           <div className="space-y-3">
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/40">
               <div className={`w-6 h-6 rounded-full flex items-center justify-center ${userProgress.level >= 7 ? 'bg-green-500' : 'bg-gray-300'}`}>
                 {userProgress.level >= 7 ? <Check className="w-4 h-4 text-white" /> : <X className="w-4 h-4 text-gray-500" />}
               </div>
@@ -73,7 +73,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/40">
               <div className={`w-6 h-6 rounded-full flex items-center justify-center ${userProgress.modulesCompleted >= 4 ? 'bg-green-500' : 'bg-gray-300'}`}>
                 {userProgress.modulesCompleted >= 4 ? <Check className="w-4 h-4 text-white" /> : <X className="w-4 h-4 text-gray-500" />}
               </div>
@@ -83,7 +83,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+            <div className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/40">
               <div className={`w-6 h-6 rounded-full flex items-center justify-center ${userProgress.totalPoints >= 5000 ? 'bg-green-500' : 'bg-gray-300'}`}>
                 {userProgress.totalPoints >= 5000 ? <Check className="w-4 h-4 text-white" /> : <X className="w-4 h-4 text-gray-500" />}
               </div>
@@ -96,7 +96,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
         </div>
 
         {/* School Ranking */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
           <h3 className="font-bold text-gray-800 mb-4">Ranking por colegios</h3>
           <div className="space-y-3">
             {[
@@ -104,7 +104,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
               { school: 'Instituto Nacional', points: 45200, students: 19 },
               { school: 'Colegio Santa María', points: 42800, students: 21 }
             ].map((school, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div key={index} className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/40">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
                   index === 0 ? 'bg-yellow-500 text-white' :
                   index === 1 ? 'bg-gray-400 text-white' :
@@ -122,7 +122,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
         </div>
 
         {/* Event Info */}
-        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-5 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-100/70 to-pink-100/70 backdrop-blur-md rounded-3xl p-5 border border-white/60">
           <div className="flex items-start gap-3">
             <div className="text-3xl">📅</div>
             <div>
@@ -137,7 +137,7 @@ export const OlympicsScreen: React.FC<OlympicsScreenProps> = ({ userProgress, on
         </div>
 
         {/* Prize Info */}
-        <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/60">
           <h3 className="font-bold text-gray-800 mb-3">Premios</h3>
           <div className="grid grid-cols-3 gap-3">
             <div className="text-center">

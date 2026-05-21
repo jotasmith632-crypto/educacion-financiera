@@ -61,7 +61,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onLogout
 }) => {
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-transparent pb-20">
       {/* Simplified Header */}
       <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 rounded-b-3xl shadow-lg">
         <div className="flex items-center justify-between mb-6">
@@ -152,7 +152,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </Motion.button>
 
         {/* Next Goal Card */}
-        <div className="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/60">
           <div className="flex items-start justify-between mb-3">
             <div>
               <p className="text-sm text-gray-500 mb-1">Siguiente meta</p>
@@ -222,7 +222,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 key={module.id}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleStartChallenge(module.id)}
-                className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 text-left"
+                className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white/60 text-left"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-3"
