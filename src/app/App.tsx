@@ -216,6 +216,29 @@ export default function App() {
       
       setModulePoints(totalPoints);
       setSessionPoints(prev => prev + newPoints);
+
+      // Disparar celebración premium de confeti cruzado
+      const duration = 1.5 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+      const randomInRange = (min: number, max: number) => {
+        return Math.random() * (max - min) + min;
+      };
+
+      const interval = window.setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 30 * (timeLeft / duration);
+        
+        // Confeti izquierdo y derecho cruzado
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+      }, 250);
     };
   useEffect(() => {
     // Check if user hasn't visited today
@@ -2558,80 +2581,129 @@ const [{ isOver }, drop] = useDrop(() => ({
 
   // Module Screen 10: Module Complete
   const ModuleComplete = () => {
+    const [pointsCount, setPointsCount] = useState(0);
+
     useEffect(() => {
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.4 }
-      });
+      // Disparar celebración premium de confeti cruzado
+      const duration = 2.2 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+      const randomInRange = (min: number, max: number) => {
+        return Math.random() * (max - min) + min;
+      };
+
+      const intervalConfetti = window.setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(intervalConfetti);
+        }
+
+        const particleCount = 40 * (timeLeft / duration);
+        
+        // Confeti izquierdo y derecho cruzado
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+      }, 250);
+
+      // Conteo de puntos progresivo animado de forma ultra-fluida
+      let start = 0;
+      const end = sessionPoints || 100;
+      
+      const durationTicks = 1200; // 1.2 segundos para el conteo total
+      const stepTime = Math.max(Math.floor(durationTicks / end), 15);
+      
+      const timer = window.setInterval(() => {
+        start += Math.ceil(end / 40); // Incrementos relativos
+        if (start >= end) {
+          clearInterval(timer);
+          setPointsCount(end);
+        } else {
+          setPointsCount(start);
+        }
+      }, stepTime);
+
+      return () => {
+        clearInterval(intervalConfetti);
+        clearInterval(timer);
+      };
     }, []);
 
     return (
-      <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
-        <div className="p-6 max-w-md mx-auto min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
+        {/* Fondos difuminados sutiles */}
+        <div className="absolute top-[-5%] left-[-5%] w-[250px] h-[250px] rounded-full bg-purple-200/30 blur-[70px] pointer-events-none" />
+        <div className="absolute bottom-[5%] right-[-5%] w-[300px] h-[300px] rounded-full bg-pink-200/20 blur-[90px] pointer-events-none" />
+
+        <div className="p-6 max-w-md mx-auto min-h-screen flex flex-col items-center justify-center relative z-10">
           <Motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", bounce: 0.5 }}
-            className="bg-white rounded-3xl p-8 shadow-2xl text-center mb-6 w-full"
+            transition={{ type: "spring", bounce: 0.45, duration: 1.2 }}
+            className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/60 text-center mb-6 w-full relative overflow-hidden"
           >
             <Motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-8xl mb-4"
+              animate={{ rotate: [0, 8, -8, 0], y: [0, -4, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="text-8xl mb-4 relative z-10"
             >
               🏆
             </Motion.div>
 
-            <h1 className="text-3xl font-bold mb-3" style={{ color: '#6C4CF1' }}>
+            <h1 className="text-3xl font-bold mb-3 relative z-10" style={{ color: '#6C4CF1' }}>
               ¡Módulo completado!
             </h1>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 relative z-10 text-sm">
               Has completado exitosamente el módulo de ahorro
             </p>
 
             {/* Badge */}
-            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-6 mb-6">
-              <p className="text-white font-bold mb-2">Insignia desbloqueada</p>
-              <div className="text-6xl mb-2">🏆</div>
-              <p className="text-white text-lg font-bold">Ahorrador Inicial</p>
-            </div>
+            <Motion.div 
+              whileHover={{ scale: 1.03 }}
+              className="bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-500 rounded-3xl p-6 mb-6 shadow-lg shadow-amber-500/20 relative z-10 overflow-hidden"
+            >
+              <div className="absolute -top-12 -left-12 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none" />
+              <p className="text-white font-bold mb-2 text-xs uppercase tracking-wider opacity-90">Insignia desbloqueada</p>
+              <div className="text-6xl mb-2 filter drop-shadow-md">🏆</div>
+              <p className="text-white text-lg font-extrabold tracking-tight">Ahorrador Inicial</p>
+            </Motion.div>
 
             {/* Points */}
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-5 mb-6 border-2" style={{ borderColor: '#CFC3FF' }}>
-              <p className="text-sm text-gray-600 mb-2">Puntos obtenidos</p>
-              <p className="text-4xl font-bold" style={{ color: '#6C4CF1' }}>
-                +{sessionPoints}
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-5 mb-6 border-2 relative z-10" style={{ borderColor: '#CFC3FF' }}>
+              <p className="text-xs text-gray-600 mb-1 font-semibold">Puntos obtenidos</p>
+              <p className="text-4xl font-extrabold" style={{ color: '#6C4CF1' }}>
+                +{pointsCount}
               </p>
             </div>
 
             {/* Summary */}
-            <div className="bg-gray-50 rounded-2xl p-5 text-left">
-              <h3 className="font-bold text-gray-800 mb-3 text-center">Lo que aprendiste</h3>
-              <div className="space-y-2">
+            <div className="bg-white/50 border border-purple-50 rounded-2xl p-5 text-left relative z-10">
+              <h3 className="font-bold text-gray-800 mb-3 text-center text-sm">Lo que aprendiste</h3>
+              <div className="space-y-2.5">
                 <div className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-700">Diferenciar necesidades y deseos</p>
+                  <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" strokeWidth={3} />
+                  <p className="text-xs text-gray-700 font-medium">Diferenciar necesidades y deseos</p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-700">Identificar gastos hormiga</p>
+                  <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" strokeWidth={3} />
+                  <p className="text-xs text-gray-700 font-medium">Identificar gastos hormiga</p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-700">Crear un plan de ahorro para tu meta</p>
+                  <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" strokeWidth={3} />
+                  <p className="text-xs text-gray-700 font-medium">Crear un plan de ahorro para tu meta</p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-700">Ahorrar ANTES de gastar</p>
+                  <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" strokeWidth={3} />
+                  <p className="text-xs text-gray-700 font-medium">Ahorrar ANTES de gastar</p>
                 </div>
               </div>
             </div>
           </Motion.div>
 
           {/* Action Buttons */}
-          <div className="space-y-3 w-full">
+          <div className="space-y-3 w-full relative z-10">
             <PrimaryButton onClick={() => setCurrentScreen('modules')}>
               Ir al siguiente módulo
               <ArrowRight className="w-5 h-5" />

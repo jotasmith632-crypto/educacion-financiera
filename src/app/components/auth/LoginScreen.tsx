@@ -64,30 +64,35 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
-      <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white p-6 pb-8">
+    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
+      {/* Orbes flotantes difuminados en el fondo para estética premium */}
+      <div className="absolute top-[20%] left-[-15%] w-[280px] h-[280px] rounded-full bg-purple-300/30 blur-[80px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute bottom-[15%] right-[-15%] w-[320px] h-[320px] rounded-full bg-pink-300/25 blur-[100px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute top-[45%] right-[5%] w-[180px] h-[180px] rounded-full bg-blue-200/20 blur-[60px] pointer-events-none" />
+
+      <div className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white p-6 pb-8 relative z-10 shadow-lg">
         <button
           onClick={isResetMode ? () => { setIsResetMode(false); setError(null); } : onBack}
           className="text-white/80 mb-4 hover:text-white transition-colors"
         >
           ← Atrás
         </button>
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold animate-fade-in">
           {isResetMode ? 'Recuperar contraseña' : 'Iniciar sesión'}
         </h1>
-        <p className="text-white/80 text-sm mt-1">
+        <p className="text-white/80 text-sm mt-1 animate-fade-in">
           {isResetMode ? 'Te ayudaremos a ingresar a tu cuenta' : 'Continúa tu ruta financiera'}
         </p>
       </div>
 
       <div className="p-6 -mt-4 max-w-md mx-auto space-y-4 relative z-10">
         {isResetMode && resetSuccess ? (
-          <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 text-center space-y-6 relative z-10">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 text-center space-y-6 relative z-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.08)]">
             <div className="mx-auto w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-500">
               <CheckCircle className="w-10 h-10" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-xl font-bold text-gray-800">¡Correo enviado!</h2>
+              <h2 className="text-xl font-bold text-gray-800 animate-fade-in">¡Correo enviado!</h2>
               <p className="text-sm text-gray-600 leading-relaxed">
                 Hemos enviado las instrucciones para restablecer tu contraseña al correo: <br />
                 <span className="font-semibold text-gray-800 break-all">{resetEmail}</span>
@@ -100,7 +105,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
             </div>
           </div>
         ) : isResetMode ? (
-          <form onSubmit={handleResetPassword} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 space-y-4 relative z-10">
+          <form onSubmit={handleResetPassword} className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 space-y-4 relative z-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(108,76,241,0.08)]">
             {error && (
               <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100">
                 {error}
@@ -121,7 +126,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
                   type="email"
                   value={resetEmail}
                   onChange={(e) => setResetEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-colors"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-all duration-250"
                   placeholder="tu@email.com"
                   required
                 />
@@ -137,14 +142,14 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
             <button
               type="button"
               onClick={() => { setIsResetMode(false); setError(null); }}
-              className="w-full text-center text-sm font-semibold hover:underline transition-all pt-2"
+              className="w-full text-center text-sm font-semibold hover:underline transition-all pt-2 cursor-pointer"
               style={{ color: '#6C4CF1' }}
             >
               Volver a Iniciar sesión
             </button>
           </form>
         ) : (
-          <form onSubmit={handleLogin} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 space-y-4 relative z-10">
+          <form onSubmit={handleLogin} className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 space-y-4 relative z-10 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(108,76,241,0.08)]">
             {error && (
               <div className="bg-red-50 text-red-600 p-3 rounded-xl text-sm border border-red-100">
                 {error}
@@ -158,7 +163,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-colors"
+                  className="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-all duration-250"
                   placeholder="tu@email.com"
                   required
                 />
@@ -172,7 +177,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-purple-400 outline-none transition-all duration-250"
                 placeholder="Tu contraseña"
                 required
               />
@@ -186,7 +191,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
                 setResetSuccess(false);
                 setResetEmail(email);
               }}
-              className="text-sm text-left hover:underline transition-all w-fit" 
+              className="text-sm text-left hover:underline transition-all w-fit cursor-pointer" 
               style={{ color: '#6C4CF1' }}
             >
               ¿Olvidaste tu contraseña?
@@ -206,7 +211,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
                 <div className="w-full border-t border-gray-200"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-[#F8F9FC] text-gray-500">O también</span>
+                <span className="px-2 bg-transparent text-gray-500 font-medium">O también</span>
               </div>
             </div>
 
@@ -221,7 +226,7 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
           ¿No tienes cuenta?{' '}
           <button
             onClick={onNavigateToRegister}
-            className="font-bold"
+            className="font-bold cursor-pointer"
             style={{ color: '#6C4CF1' }}
           >
             Regístrate
