@@ -535,6 +535,21 @@ const [{ isOver }, drop] = useDrop(() => ({
     setCurrentScreen('home');
   };
 
+  const handleCancelAvatar = () => {
+    if (userData && userData.avatar) {
+      setAvatar(userData.avatar);
+    } else {
+      setAvatar({
+        id: 'default',
+        face: '😊',
+        skin: '#FFD1A0',
+        hair: '🦱',
+        accessory: '🎓'
+      });
+    }
+    setCurrentScreen('home');
+  };
+
   const ChallengeScreen = () => {
     const currentChallenge = challengeQuestions[currentQuestion];
     const module = modules.find(m => m.id === selectedModule);
@@ -2724,6 +2739,7 @@ const [{ isOver }, drop] = useDrop(() => ({
                 avatar={avatar}
                 setAvatar={setAvatar}
                 onSave={handleSaveAvatar}
+                onBack={handleCancelAvatar}
               />
             )}
 

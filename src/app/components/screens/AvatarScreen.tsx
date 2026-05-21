@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowLeft } from 'lucide-react';
 import { motion as Motion } from 'motion/react';
 import { AvatarRenderer } from '../ui/AvatarRenderer';
 
@@ -15,9 +15,10 @@ interface AvatarScreenProps {
   avatar: Avatar;
   setAvatar: React.Dispatch<React.SetStateAction<Avatar>>;
   onSave: () => void;
+  onBack: () => void;
 }
 
-export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, onSave }) => {
+export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, onSave, onBack }) => {
   const avatarOptions = {
     faces: ['😊', '😎', '🤓', '😄', '🤗', '😇'],
     skins: ['#FFD1A0', '#F1C27D', '#D4A574', '#A97C5D', '#8D5524', '#6B3410'],
@@ -28,21 +29,33 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-6 pb-8">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-8 h-8" />
-            <div>
-              <h1 className="text-2xl font-bold">Mi Avatar</h1>
-              <p className="text-white/90 text-sm">Personaliza tu personaje</p>
-            </div>
-          </div>
+        <div className="flex items-center justify-between mb-4">
+          <Motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={onBack}
+            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold border border-white/25 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Volver
+          </Motion.button>
+          
           <Motion.button
             whileTap={{ scale: 0.95 }}
             onClick={onSave}
-            className="bg-white/20 backdrop-blur-sm px-3 py-2 rounded-full text-sm font-medium border border-white/30"
+            className="bg-white text-purple-700 hover:bg-purple-50 shadow-md shadow-purple-900/10 px-5 py-2 rounded-full text-sm font-bold border border-white transition-colors"
           >
             Guardar
           </Motion.button>
+        </div>
+
+        <div className="flex items-center gap-3 mt-2">
+          <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+            <Sparkles className="w-6 h-6 text-yellow-300" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Mi Avatar</h1>
+            <p className="text-white/80 text-sm">Personaliza tu personaje único</p>
+          </div>
         </div>
       </div>
 
