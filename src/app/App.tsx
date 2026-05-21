@@ -35,6 +35,7 @@ import { ModuleLevel5 } from './components/modules/ModuleLevel5';
 import { ModuleLevel6 } from './components/modules/ModuleLevel6';
 import { ModuleLevel7 } from './components/modules/ModuleLevel7';
 import { PremiumIcon } from './components/ui/PremiumIcon';
+import { InteractiveParticlesBackground } from './components/ui/InteractiveParticlesBackground';
 
 type Screen =
   | 'onboarding-1' | 'onboarding-2' | 'onboarding-3'
@@ -2632,6 +2633,9 @@ const [{ isOver }, drop] = useDrop(() => ({
 
     return (
       <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
+        {/* Fondo interactivo de partículas de oro de la victoria */}
+        <InteractiveParticlesBackground particleColor="rgba(245, 158, 11, 0.35)" lineColor="rgba(245, 158, 11, 0.12)" />
+
         {/* Fondos difuminados sutiles */}
         <div className="absolute top-[-5%] left-[-5%] w-[250px] h-[250px] rounded-full bg-purple-200/30 blur-[70px] pointer-events-none" />
         <div className="absolute bottom-[5%] right-[-5%] w-[300px] h-[300px] rounded-full bg-pink-200/20 blur-[90px] pointer-events-none" />

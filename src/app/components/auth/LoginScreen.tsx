@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ArrowRight, Mail, KeyRound, CheckCircle } from 'lucide-react';
 import { PrimaryButton, SecondaryButton } from '../shared/CustomButtons';
 import { loginWithEmail, loginWithGoogle, sendPasswordReset } from '../../services/authService';
+import { InteractiveParticlesBackground } from '../ui/InteractiveParticlesBackground';
 
 interface LoginScreenProps {
   onSuccess: () => void;
@@ -65,6 +66,9 @@ export const LoginScreen = ({ onSuccess, onNavigateToRegister, onBack }: LoginSc
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F8F9FC' }}>
+      {/* Fondo interactivo de partículas en red */}
+      <InteractiveParticlesBackground />
+
       {/* Orbes flotantes difuminados en el fondo para estética premium */}
       <div className="absolute top-[20%] left-[-15%] w-[280px] h-[280px] rounded-full bg-purple-300/30 blur-[80px] pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
       <div className="absolute bottom-[15%] right-[-15%] w-[320px] h-[320px] rounded-full bg-pink-300/25 blur-[100px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
