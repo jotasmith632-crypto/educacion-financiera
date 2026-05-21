@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PrimaryButton, BackButton } from '../shared/CustomButtons';
+import { PremiumIcon } from '../ui/PremiumIcon';
 
 interface ModuleLevel2Props {
   onComplete: (points: number) => void;
@@ -120,7 +121,7 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
                       }`}
                     >
                       <div className="flex items-center gap-4">
-                        <div className="text-4xl">{expense.emoji}</div>
+                        <PremiumIcon emoji={expense.emoji} size={24} showBackground={true} />
                         <div className="flex-1 text-left">
                           <div className="font-bold">{expense.name}</div>
                           <div className="text-sm text-gray-600">{expense.frequency}</div>
@@ -174,7 +175,9 @@ export const ModuleLevel2 = ({ onComplete, onBack }: ModuleLevel2Props) => {
               animate={{ opacity: 1, scale: 1 }}
               className="bg-gradient-to-br from-orange-500 to-amber-600 rounded-3xl p-8 shadow-xl text-white"
             >
-              <div className="text-6xl mb-4">🐜💸</div>
+              <div className="mb-4">
+                <PremiumIcon emoji="💰" size={32} showBackground={true} />
+              </div>
               <h2 className="text-2xl font-bold mb-2">¡Gastos hormiga identificados!</h2>
               <p className="text-orange-50 mb-6">
                 Encontraste <strong>{identifiedExpenses.length}</strong> gastos que puedes reducir

@@ -3,6 +3,7 @@ import { Star, Flame, Trophy, Check, Zap, Lock, Lightbulb, ShoppingCart, ArrowRi
 import { motion as Motion } from 'motion/react';
 import * as Progress from '@radix-ui/react-progress';
 import { BottomNav } from '../shared/BottomNav';
+import { PremiumIcon } from '../ui/PremiumIcon';
 
 interface Badge {
   id: number;
@@ -70,8 +71,12 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
               <h2 className="text-4xl font-bold">Nivel {userProgress.level}</h2>
               <p className="text-sm mt-1 opacity-90">{userProgress.rankTitle}</p>
             </div>
-            <div className="text-6xl">
-              {userProgress.level >= 7 ? '👑' : userProgress.level >= 4 ? '⚡' : '🌟'}
+            <div>
+              <PremiumIcon
+                emoji={userProgress.level >= 7 ? '👑' : userProgress.level >= 4 ? '⚡' : '🌟'}
+                size={36}
+                showBackground={true}
+              />
             </div>
           </div>
 
@@ -126,13 +131,18 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
                 className="flex flex-col items-center"
               >
                 <div
-                  className={`w-full aspect-square rounded-xl flex items-center justify-center text-3xl border-2 transition-all ${
+                  className={`w-full aspect-square rounded-xl flex items-center justify-center border transition-all ${
                     badge.unlocked
-                      ? 'bg-white border-purple-200 shadow-md'
-                      : 'bg-gray-100 border-gray-300 grayscale opacity-40'
+                      ? 'bg-white border-purple-100 shadow-sm'
+                      : 'bg-gray-50 border-gray-200 grayscale opacity-40'
                   }`}
                 >
-                  {badge.emoji}
+                  <PremiumIcon
+                    emoji={badge.emoji}
+                    showBackground={badge.unlocked}
+                    size={28}
+                    className={badge.unlocked ? "" : "opacity-60"}
+                  />
                 </div>
                 <p className="text-[9px] text-gray-600 mt-1.5 text-center leading-tight font-medium">
                   {badge.name}
@@ -209,13 +219,13 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
             <div className="flex items-center gap-3 mb-3">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: modules[0]?.bgColor }}
+                style={{ backgroundColor: modules[0]?.bgColor || '#EFEAFE' }}
               >
-                {NextModuleIcon && <NextModuleIcon className="w-6 h-6" style={{ color: modules[0]?.color }} />}
+                {NextModuleIcon && <NextModuleIcon className="w-6 h-6" style={{ color: modules[0]?.color || '#6C4CF1' }} />}
               </div>
               <div className="flex-1">
-                <p className="font-bold text-gray-800">{modules[0].title}</p>
-                <p className="text-xs text-gray-600">{modules[0].progress}% completado</p>
+                <p className="font-bold text-gray-800">{modules[0]?.title || 'Módulo Inicial'}</p>
+                <p className="text-xs text-gray-600">{modules[0]?.progress ?? 0}% completado</p>
               </div>
               <ArrowRight className="w-5 h-5 text-gray-400" />
             </div>

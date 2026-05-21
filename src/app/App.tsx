@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 import { useState, useEffect } from 'react';
 import { Trophy, Target, Rocket, TrendingUp, ShoppingCart, CreditCard, PiggyBank, Flame, Award, Star, Lock, ChevronRight, Info, User as UserIcon, Bell, BellOff, Sparkles, Home, BookOpen, Zap, Medal, Users, ArrowRight, Check, X, TrendingDown, Calendar, BarChart3, Lightbulb, DollarSign, HelpCircle, AlertCircle, Clock, Tag, LogOut } from 'lucide-react';
@@ -23,7 +22,7 @@ import { WelcomeScreen } from './components/screens/WelcomeScreen';
 import { ModulesScreen } from './components/screens/ModulesScreen';
 import { AchievementsScreen } from './components/screens/AchievementsScreen';
 import { subscribeToAuthChanges, logout } from './services/authService';
-import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth';
+import { User as FirebaseUser } from 'firebase/auth';
 import { obtenerDatosUsuario, actualizarDatosUsuario, guardarResultadoJuego } from '../db';
 import { auth, db } from '../firebaseConfig';
 import { doc, getDoc, arrayUnion } from 'firebase/firestore';
@@ -35,6 +34,7 @@ import { ModuleLevel4 } from './components/modules/ModuleLevel4';
 import { ModuleLevel5 } from './components/modules/ModuleLevel5';
 import { ModuleLevel6 } from './components/modules/ModuleLevel6';
 import { ModuleLevel7 } from './components/modules/ModuleLevel7';
+import { PremiumIcon } from './components/ui/PremiumIcon';
 
 type Screen =
   | 'onboarding-1' | 'onboarding-2' | 'onboarding-3'
@@ -118,9 +118,12 @@ export default function App() {
             if (data.avatar) setAvatar(data.avatar);
           }
 
-          if (['login', 'register', 'onboarding-1', 'onboarding-2', 'onboarding-3'].includes(currentScreen)) {
-            setCurrentScreen('home');
-          }
+          setCurrentScreen(prev => {
+            if (['login', 'register', 'onboarding-1', 'onboarding-2', 'onboarding-3'].includes(prev)) {
+              return 'home';
+            }
+            return prev;
+          });
         } else {
           setUserData(null);
           resetGameState(); // LIMPIAR ESTADO SI NO HAY USUARIO
@@ -128,7 +131,7 @@ export default function App() {
         setAuthLoading(false);
       });
       return () => unsubscribe();
-    }, [currentScreen]); // Re-subscribirse si cambia la pantalla actual
+    }, []); // Corregido: ejecutarse una sola vez al montar y evitar fugas o re-suscripciones
 
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
   const [showOlympicsInfo, setShowOlympicsInfo] = useState(false);
@@ -195,6 +198,21 @@ export default function App() {
       }
       
       await actualizarDatosUsuario(currentUser.uid, updates);
+      
+      // Update local state reactive userData to avoid needing full page reload!
+      setUserData((prev: any) => {
+        if (!prev) return prev;
+        const currentCompleted = prev.completedLevels || [];
+        const updatedCompleted = levelKey && !currentCompleted.includes(levelKey)
+          ? [...currentCompleted, levelKey]
+          : currentCompleted;
+        return {
+          ...prev,
+          points: totalPoints,
+          metaFinanciera: metaFinanciera || prev.metaFinanciera || "",
+          completedLevels: updatedCompleted
+        };
+      });
       
       setModulePoints(totalPoints);
       setSessionPoints(prev => prev + newPoints);
@@ -839,9 +857,9 @@ const [{ isOver }, drop] = useDrop(() => ({
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", bounce: 0.5, duration: 1 }}
-        className="text-8xl mb-8"
+        className="mb-8"
       >
-        💰
+        <PremiumIcon emoji="💰" size={60} showBackground={true} />
       </Motion.div>
 
       <Motion.h1
@@ -894,23 +912,20 @@ const [{ isOver }, drop] = useDrop(() => ({
         <Motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="text-6xl"
         >
-          🎯
+          <PremiumIcon emoji="🎯" size={36} showBackground={true} />
         </Motion.div>
         <Motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-          className="text-6xl"
         >
-          ⭐
+          <PremiumIcon emoji="⭐" size={36} showBackground={true} />
         </Motion.div>
         <Motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-          className="text-6xl"
         >
-          🏆
+          <PremiumIcon emoji="🏆" size={36} showBackground={true} />
         </Motion.div>
       </Motion.div>
 
@@ -1239,6 +1254,9 @@ const [{ isOver }, drop] = useDrop(() => ({
       }
     ];
 
+    const completedLevelsCount = moduleLevels.filter(lvl => lvl.completed).length;
+    const progressPercentage = Math.round((completedLevelsCount / moduleLevels.length) * 100);
+
     return (
       <div className="min-h-screen" style={{ backgroundColor: '#F8F9FC' }}>
         {/* Header */}
@@ -1286,16 +1304,16 @@ const [{ isOver }, drop] = useDrop(() => ({
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-600 font-medium">Progreso del módulo</span>
-              <span className="text-2xl font-bold" style={{ color: '#10B981' }}>0%</span>
+              <span className="text-2xl font-bold" style={{ color: '#10B981' }}>{progressPercentage}%</span>
             </div>
             <Progress.Root
               className="relative overflow-hidden bg-gray-100 rounded-full w-full h-3"
               style={{ transform: 'translateZ(0)' }}
-              value={0}
+              value={progressPercentage}
             >
               <Progress.Indicator
                 className="bg-gradient-to-r from-emerald-500 to-teal-500 w-full h-full transition-transform duration-500 rounded-full"
-                style={{ transform: `translateX(-${100 - 0}%)` }}
+                style={{ transform: `translateX(-${100 - progressPercentage}%)` }}
               />
             </Progress.Root>
             <p className="text-sm text-gray-500 mt-2">Completa los 7 niveles para dominar este módulo</p>
@@ -1673,7 +1691,9 @@ const [{ isOver }, drop] = useDrop(() => ({
                         border: selectedItem === item.id ? '3px solid #6C4CF1' : '2px solid #E5E7EB'
                       }}
                     >
-                      <div className="text-3xl mb-1">{item.emoji}</div>
+                      <div className="flex justify-center mb-1">
+                        <PremiumIcon emoji={item.emoji} size={28} showBackground={false} />
+                      </div>
                       <p className="text-xs font-medium text-gray-700">{item.name}</p>
                     </Motion.button>
                   ))}
@@ -1757,8 +1777,12 @@ const [{ isOver }, drop] = useDrop(() => ({
                       animate={{ scale: 1 }}
                       className="rounded-lg p-2 text-center bg-gray-50 border border-gray-200"
                     >
-                      <div className="text-2xl mb-1">{item.emoji}</div>
-                      <p className="text-xs text-gray-600">{item.userChoice === 'need' ? '✅' : '💭'}</p>
+                      <div className="flex justify-center mb-1">
+                        <PremiumIcon emoji={item.emoji} size={20} showBackground={false} />
+                      </div>
+                      <p className="text-[10px] font-bold text-indigo-600 mt-1 uppercase tracking-wider">
+                        {item.userChoice === 'need' ? 'Necesidad' : 'Deseo'}
+                      </p>
                     </Motion.div>
                   ))}
                 </div>
@@ -1836,7 +1860,9 @@ const [{ isOver }, drop] = useDrop(() => ({
                     border: savingsGoal === goal.id ? '2px solid #6C4CF1' : '2px solid #E5E7EB'
                   }}
                 >
-                  <div className="text-4xl mb-2">{goal.emoji}</div>
+                  <div className="flex justify-center mb-2">
+                    <PremiumIcon emoji={goal.emoji} size={28} showBackground={true} />
+                  </div>
                   <p className="text-sm font-bold text-gray-800">{goal.name}</p>
                   {goal.estimatedPrice > 0 && (
                     <p className="text-xs text-gray-500 mt-1">~S/ {goal.estimatedPrice}</p>
@@ -2058,7 +2084,7 @@ const [{ isOver }, drop] = useDrop(() => ({
                   }}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{expense.emoji}</span>
+                    <PremiumIcon emoji={expense.emoji} size={20} showBackground={true} className="mr-1" />
                     <div className="text-left">
                       <p className="font-medium text-gray-800">{expense.name}</p>
                       <p className="text-xs text-gray-500">~S/ {expense.amount} por semana</p>
@@ -2608,167 +2634,180 @@ const [{ isOver }, drop] = useDrop(() => ({
   return (
     <DndProvider backend={HTML5Backend}>
       <Toaster position="top-center" richColors />
-      <div className="font-sans min-h-screen relative">
-        <div>
-          {/* Onboarding Screens */}
-        {currentScreen === 'onboarding-1' && <Onboarding1 />}
-        {currentScreen === 'onboarding-2' && <Onboarding2 />}
-        {currentScreen === 'onboarding-3' && <Onboarding3 />}
+      {authLoading ? (
+        <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex flex-col items-center justify-center p-6">
+          <div className="relative flex flex-col items-center">
+            <div className="w-16 h-16 border-4 border-t-white border-white/20 rounded-full animate-spin mb-4" />
+            <p className="text-white/85 font-bold text-sm tracking-wider animate-pulse uppercase">
+              Cargando Olimpiadas Financieras...
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="font-sans min-h-screen relative">
+          <div>
+            {/* Onboarding Screens */}
+            {currentScreen === 'onboarding-1' && <Onboarding1 />}
+            {currentScreen === 'onboarding-2' && <Onboarding2 />}
+            {currentScreen === 'onboarding-3' && <Onboarding3 />}
 
-        {/* Auth Screens */}
-        {currentScreen === 'register' && (
-          <RegisterScreen 
-            onSuccess={() => setCurrentScreen('home')} 
-            onNavigateToLogin={() => setCurrentScreen('login')}
-            onBack={() => setCurrentScreen('onboarding-3')}
-          />
-        )}
-        {currentScreen === 'login' && (
-          <LoginScreen 
-            onSuccess={() => setCurrentScreen('home')} 
-            onNavigateToRegister={() => setCurrentScreen('register')}
-            onBack={() => setCurrentScreen('onboarding-1')}
-          />
-        )}
+            {/* Auth Screens */}
+            {currentScreen === 'register' && (
+              <RegisterScreen 
+                onSuccess={() => setCurrentScreen('home')} 
+                onNavigateToLogin={() => setCurrentScreen('login')}
+                onBack={() => setCurrentScreen('onboarding-3')}
+              />
+            )}
+            {currentScreen === 'login' && (
+              <LoginScreen 
+                onSuccess={() => setCurrentScreen('home')} 
+                onNavigateToRegister={() => setCurrentScreen('register')}
+                onBack={() => setCurrentScreen('onboarding-1')}
+              />
+            )}
 
-        {/* Payment Screens */}
-        {currentScreen === 'payment' && <PaymentScreen />}
-        {currentScreen === 'payment-success' && <PaymentSuccessScreen />}
+            {/* Payment Screens */}
+            {currentScreen === 'payment' && <PaymentScreen />}
+            {currentScreen === 'payment-success' && <PaymentSuccessScreen />}
 
-        {/* Main Screens */}
-        {currentScreen === 'welcome' && (
-          <WelcomeScreen onStart={() => setCurrentScreen('home')} />
-        )}
-        {currentScreen === 'home' && (
-          <HomeScreen
-            avatar={avatar}
-            userData={userData}
-            currentUser={currentUser}
-            userProgress={userProgress}
-            modules={modules}
-            onNavigate={setCurrentScreen}
-            handleStartChallenge={handleStartChallenge}
-            onLogout={async () => {
-              await logout();
-              setCurrentScreen('login');
-            }}
-          />
-        )}
-        {currentScreen === 'modules' && (
-          <ModulesScreen
-            modules={modules}
-            handleStartChallenge={handleStartChallenge}
-            onNavigate={setCurrentScreen}
-          />
-        )}
-        {currentScreen === 'challenge' && <ChallengeScreen />}
-        {currentScreen === 'achievements' && (
-          <AchievementsScreen
-            userProgress={userProgress}
-            badges={badges}
-            modules={modules}
-            onNavigate={setCurrentScreen}
-          />
-        )}
-        {currentScreen === 'olympics' && (
-          <OlympicsScreen
-            userProgress={userProgress}
-            onNavigate={setCurrentScreen}
-          />
-        )}
-        {currentScreen === 'parents' && (
-          <ParentsScreen
-            onBack={() => setCurrentScreen('home')}
-          />
-        )}
-        {currentScreen === 'avatar' && (
-          <AvatarScreen
-            avatar={avatar}
-            setAvatar={setAvatar}
-            onSave={handleSaveAvatar}
-          />
-        )}
+            {/* Main Screens */}
+            {currentScreen === 'welcome' && (
+              <WelcomeScreen onStart={() => setCurrentScreen('home')} />
+            )}
+            {currentScreen === 'home' && (
+              <HomeScreen
+                avatar={avatar}
+                userData={userData}
+                currentUser={currentUser}
+                userProgress={userProgress}
+                modules={modules}
+                onNavigate={setCurrentScreen}
+                handleStartChallenge={handleStartChallenge}
+                onLogout={async () => {
+                  await logout();
+                  setCurrentScreen('login');
+                }}
+              />
+            )}
+            {currentScreen === 'modules' && (
+              <ModulesScreen
+                modules={modules}
+                handleStartChallenge={handleStartChallenge}
+                onNavigate={setCurrentScreen}
+              />
+            )}
+            {currentScreen === 'challenge' && <ChallengeScreen />}
+            {currentScreen === 'achievements' && (
+              <AchievementsScreen
+                userProgress={userProgress}
+                badges={badges}
+                modules={modules}
+                onNavigate={setCurrentScreen}
+              />
+            )}
+            {currentScreen === 'olympics' && (
+              <OlympicsScreen
+                userProgress={userProgress}
+                onNavigate={setCurrentScreen}
+              />
+            )}
+            {currentScreen === 'parents' && (
+              <ParentsScreen
+                userData={userData}
+                currentUser={currentUser}
+                onBack={() => setCurrentScreen('home')}
+              />
+            )}
+            {currentScreen === 'avatar' && (
+              <AvatarScreen
+                avatar={avatar}
+                setAvatar={setAvatar}
+                onSave={handleSaveAvatar}
+              />
+            )}
 
-        {/* Module 1: New 7-level structure */}
-        {currentScreen === 'module-main' && <ModuleMain />}
-        {currentScreen === 'module-level-1' && (
-          <ModuleLevel1 
-            onComplete={(points: number, metaFinanciera?: string) => {
-              saveUserProgress(points, 'module-level-1', metaFinanciera);
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-2' && (
-          <ModuleLevel2 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-2');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-3' && (
-          <ModuleLevel3 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-3');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-4' && (
-          <ModuleLevel4 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-4');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-5' && (
-          <ModuleLevel5 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-5');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-6' && (
-          <ModuleLevel6 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-6');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
-        {currentScreen === 'module-level-7' && (
-          <ModuleLevel7 
-            onComplete={(points: number) => {
-              saveUserProgress(points, 'module-level-7');
-              setCurrentScreen('module-main');
-            }}
-            onBack={() => setCurrentScreen('module-main')}
-          />
-        )}
+            {/* Module 1: New 7-level structure */}
+            {currentScreen === 'module-main' && <ModuleMain />}
+            {currentScreen === 'module-level-1' && (
+              <ModuleLevel1 
+                onComplete={(points: number, metaFinanciera?: string) => {
+                  saveUserProgress(points, 'module-level-1', metaFinanciera);
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-2' && (
+              <ModuleLevel2 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-2');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-3' && (
+              <ModuleLevel3 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-3');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-4' && (
+              <ModuleLevel4 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-4');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-5' && (
+              <ModuleLevel5 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-5');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-6' && (
+              <ModuleLevel6 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-6');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
+            {currentScreen === 'module-level-7' && (
+              <ModuleLevel7 
+                onComplete={(points: number) => {
+                  saveUserProgress(points, 'module-level-7');
+                  setCurrentScreen('module-main');
+                }}
+                onBack={() => setCurrentScreen('module-main')}
+              />
+            )}
 
-        {/* Module Screens (Old) */}
-        {currentScreen === 'module-intro' && <ModuleIntro />}
-        {currentScreen === 'module-why' && <ModuleWhy />}
-        {currentScreen === 'module-need-vs-want' && <ModuleNeedVsWant />}
-        {currentScreen === 'module-goal' && <ModuleGoal />}
-        {currentScreen === 'module-simulator' && <ModuleSimulator />}
-        {currentScreen === 'module-expenses' && <ModuleExpenses />}
-        {currentScreen === 'module-challenge-task' && <ModuleChallengeTask />}
-        {currentScreen === 'module-progress' && <ModuleProgress />}
-        {currentScreen === 'module-quiz' && <ModuleQuiz />}
-        {currentScreen === 'module-complete' && <ModuleComplete />}
-      </div>
-    </div>
-  </DndProvider>
-);
+            {/* Module Screens (Old) */}
+            {currentScreen === 'module-intro' && <ModuleIntro />}
+            {currentScreen === 'module-why' && <ModuleWhy />}
+            {currentScreen === 'module-need-vs-want' && <ModuleNeedVsWant />}
+            {currentScreen === 'module-goal' && <ModuleGoal />}
+            {currentScreen === 'module-simulator' && <ModuleSimulator />}
+            {currentScreen === 'module-expenses' && <ModuleExpenses />}
+            {currentScreen === 'module-challenge-task' && <ModuleChallengeTask />}
+            {currentScreen === 'module-progress' && <ModuleProgress />}
+            {currentScreen === 'module-quiz' && <ModuleQuiz />}
+            {currentScreen === 'module-complete' && <ModuleComplete />}
+          </div>
+        </div>
+      )}
+    </DndProvider>
+  );
 }
 

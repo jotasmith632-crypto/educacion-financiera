@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 import { motion as Motion } from 'motion/react';
+import { AvatarRenderer } from '../ui/AvatarRenderer';
 
 interface Avatar {
   id: string;
@@ -48,13 +49,8 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
       <div className="p-6 -mt-4 max-w-md mx-auto space-y-6">
         {/* Avatar Preview */}
         <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 text-center">
-          <div
-            className="w-32 h-32 rounded-full mx-auto mb-4 flex items-center justify-center text-6xl relative border-4 border-gray-100"
-            style={{ backgroundColor: avatar.skin }}
-          >
-            <span className="absolute">{avatar.face}</span>
-            <span className="absolute -top-2 text-5xl">{avatar.hair}</span>
-            <span className="absolute -top-1 -right-1 text-3xl">{avatar.accessory}</span>
+          <div className="w-36 h-36 rounded-full mx-auto mb-4 flex items-center justify-center relative border-4 border-purple-50 shadow-inner bg-gradient-to-tr from-purple-50 to-pink-50 overflow-hidden">
+            <AvatarRenderer avatar={avatar} size={120} />
           </div>
           <p className="text-gray-600 font-medium">Tu personaje único</p>
         </div>
@@ -75,13 +71,13 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   onClick={() => {
                     setAvatar({ ...avatar, face });
                   }}
-                  className={`text-3xl p-2 rounded-xl transition-all ${
+                  className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.face === face
                       ? 'bg-purple-100 ring-2 ring-purple-400'
                       : 'bg-gray-50 hover:bg-gray-100'
                   }`}
                 >
-                  {face}
+                  <AvatarRenderer avatar={{ ...avatar, face }} size={44} />
                 </Motion.button>
               ))}
             </div>
@@ -101,11 +97,13 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   onClick={() => {
                     setAvatar({ ...avatar, skin });
                   }}
-                  className={`w-12 h-12 rounded-xl transition-all ${
+                  className={`w-12 h-12 rounded-xl transition-all flex items-center justify-center ${
                     avatar.skin === skin ? 'ring-2 ring-purple-500 scale-110' : ''
                   }`}
                   style={{ backgroundColor: skin }}
-                />
+                >
+                  <AvatarRenderer avatar={{ ...avatar, skin }} size={40} />
+                </Motion.button>
               ))}
             </div>
           </div>
@@ -124,13 +122,13 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   onClick={() => {
                     setAvatar({ ...avatar, hair });
                   }}
-                  className={`text-3xl p-2 rounded-xl transition-all ${
+                  className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.hair === hair
                       ? 'bg-purple-100 ring-2 ring-purple-400'
                       : 'bg-gray-50 hover:bg-gray-100'
                   }`}
                 >
-                  {hair}
+                  <AvatarRenderer avatar={{ ...avatar, hair }} size={44} />
                 </Motion.button>
               ))}
             </div>
@@ -150,13 +148,13 @@ export const AvatarScreen: React.FC<AvatarScreenProps> = ({ avatar, setAvatar, o
                   onClick={() => {
                     setAvatar({ ...avatar, accessory });
                   }}
-                  className={`text-3xl p-2 rounded-xl transition-all ${
+                  className={`p-1 rounded-xl transition-all flex items-center justify-center ${
                     avatar.accessory === accessory
                       ? 'bg-yellow-100 ring-2 ring-yellow-400'
                       : 'bg-gray-50 hover:bg-gray-100'
                   }`}
                 >
-                  {accessory}
+                  <AvatarRenderer avatar={{ ...avatar, accessory }} size={44} />
                 </Motion.button>
               ))}
             </div>

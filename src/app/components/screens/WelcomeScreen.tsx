@@ -2,6 +2,7 @@ import React from 'react';
 import { Trophy, ArrowRight } from 'lucide-react';
 import { motion as Motion } from 'motion/react';
 import confetti from 'canvas-confetti';
+import { PremiumIcon } from '../ui/PremiumIcon';
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -21,9 +22,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
           rotate: [0, 5, 0]
         }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute top-20 left-10 text-6xl opacity-10"
+        className="absolute top-20 left-10 opacity-10"
       >
-        💰
+        <PremiumIcon emoji="💰" showBackground={false} size={60} />
       </Motion.div>
       <Motion.div
         animate={{
@@ -31,9 +32,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
           rotate: [0, -5, 0]
         }}
         transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-        className="absolute bottom-32 right-10 text-6xl opacity-10"
+        className="absolute bottom-32 right-10 opacity-10"
       >
-        📊
+        <PremiumIcon emoji="📊" showBackground={false} size={60} />
       </Motion.div>
       <Motion.div
         animate={{
@@ -41,9 +42,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
           rotate: [0, 10, 0]
         }}
         transition={{ duration: 3.5, repeat: Infinity, delay: 1 }}
-        className="absolute top-40 right-20 text-5xl opacity-10"
+        className="absolute top-40 right-20 opacity-10"
       >
-        🎯
+        <PremiumIcon emoji="🎯" showBackground={false} size={48} />
       </Motion.div>
 
       <Motion.div
@@ -82,16 +83,22 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
         className="bg-white/10 backdrop-blur-md rounded-3xl p-6 mb-8 border border-white/20 max-w-sm mx-auto"
       >
         <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <div className="text-3xl mb-2">📚</div>
+          <div className="flex flex-col items-center">
+            <div className="mb-2">
+              <PremiumIcon emoji="📚" size={20} />
+            </div>
             <p className="text-white/90 text-xs font-medium">5 Módulos</p>
           </div>
-          <div>
-            <div className="text-3xl mb-2">🎮</div>
+          <div className="flex flex-col items-center">
+            <div className="mb-2">
+              <PremiumIcon emoji="🎮" size={20} />
+            </div>
             <p className="text-white/90 text-xs font-medium">Retos Diarios</p>
           </div>
-          <div>
-            <div className="text-3xl mb-2">🏆</div>
+          <div className="flex flex-col items-center">
+            <div className="mb-2">
+              <PremiumIcon emoji="🏆" size={20} />
+            </div>
             <p className="text-white/90 text-xs font-medium">Olimpiadas</p>
           </div>
         </div>

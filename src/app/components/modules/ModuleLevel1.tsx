@@ -20,6 +20,16 @@ import {
 import confetti from 'canvas-confetti';
 import * as Progress from '@radix-ui/react-progress';
 import { PrimaryButton, SecondaryButton, BackButton } from '../shared/CustomButtons';
+import { PremiumIcon } from '../ui/PremiumIcon';
+import { AvatarRenderer } from '../ui/AvatarRenderer';
+
+const valeriaAvatar = {
+  id: 'valeria',
+  face: 'happy',
+  skin: '#FFD1A0',
+  hair: 'bob',
+  accessory: 'none'
+};
 
 interface ModuleLevel1Props {
   onComplete: (points: number, metaFinanciera?: string) => void;
@@ -179,21 +189,21 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-6 text-white shadow-lg"
             >
-              <h3 className="font-bold text-2xl mb-4">Tu meta necesita un plan 📋</h3>
+              <h3 className="font-bold text-2xl mb-4">Tu meta necesita un plan</h3>
               <p className="text-white/90 leading-relaxed mb-4">
                 No basta con querer algo. Para lograr una meta financiera necesitas saber:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 bg-white/10 p-3 rounded-xl">
-                  <div className="bg-white/20 p-2 rounded-lg">💰</div>
+                  <PremiumIcon emoji="💰" size={18} showBackground={true} className="rounded-lg shadow-none" />
                   <span className="text-sm font-medium">¿Cuánto cuesta? (El Monto)</span>
                 </li>
                 <li className="flex items-center gap-3 bg-white/10 p-3 rounded-xl">
-                  <div className="bg-white/20 p-2 rounded-lg">📅</div>
+                  <PremiumIcon emoji="📅" size={18} showBackground={true} className="rounded-lg shadow-none" />
                   <span className="text-sm font-medium">¿Para cuándo lo quieres? (El Tiempo)</span>
                 </li>
                 <li className="flex items-center gap-3 bg-white/10 p-3 rounded-xl">
-                  <div className="bg-white/20 p-2 rounded-lg">🐷</div>
+                  <PremiumIcon emoji="🐷" size={18} showBackground={true} className="rounded-lg shadow-none" />
                   <span className="text-sm font-medium">¿Cuánto ahorrarás cada semana?</span>
                 </li>
               </ul>
@@ -215,8 +225,8 @@ export const ModuleLevel1 = ({ onComplete, onBack }: ModuleLevel1Props) => {
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-4xl">
-                  👩‍🎓
+                <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center border border-pink-200 overflow-hidden">
+                  <AvatarRenderer avatar={valeriaAvatar} size={64} />
                 </div>
                 <div>
                   <h3 className="font-bold text-xl text-gray-800">Misión: Ayuda a Valeria</h3>

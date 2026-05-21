@@ -1,37 +1,44 @@
 import React from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../firebaseConfig';
 import { obtenerDatosUsuario } from '../../../db';
 import { PrimaryButton } from '../shared/CustomButtons';
 
 interface ParentsScreenProps {
+  userData?: any;
+  currentUser?: any;
   onBack: () => void;
 }
 
-export const ParentsScreen: React.FC<ParentsScreenProps> = ({ onBack }) => {
-  const [userData, setUserData] = React.useState<any>(null);
-  const [loading, setLoading] = React.useState(true);
+export const ParentsScreen: React.FC<ParentsScreenProps> = ({ userData: propUserData, currentUser, onBack }) => {
+  const [userData, setUserData] = React.useState<any>(propUserData);
+  const [loading, setLoading] = React.useState(!propUserData && !!currentUser);
 
   React.useEffect(() => {
-    // Escucha si hay un usuario logueado
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        try {
-          // Buscamos el documento del niño en la colección "usuarios"
-          const docSnap = await obtenerDatosUsuario(user.uid);
-
-          if (docSnap) {
-            setUserData(docSnap);
-          }
-        } catch (error) {
-          console.error("Error al obtener datos de Firebase:", error);
-        }
-      }
+    if (propUserData) {
+      setUserData(propUserData);
       setLoading(false);
-    });
+      return;
+    }
 
-    return () => unsubscribe();
-  }, []);
+    if (!currentUser) {
+      setLoading(false);
+      return;
+    }
+
+    const loadDataFallback = async () => {
+      try {
+        const docSnap = await obtenerDatosUsuario(currentUser.uid);
+        if (docSnap) {
+          setUserData(docSnap);
+        }
+      } catch (error) {
+        console.error("Error al obtener datos de Firebase:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDataFallback();
+  }, [propUserData, currentUser]);
 
   if (loading) {
     return (

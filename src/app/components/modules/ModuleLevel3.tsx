@@ -24,6 +24,7 @@ import {
 import confetti from 'canvas-confetti';
 import * as Progress from '@radix-ui/react-progress';
 import { PrimaryButton, SecondaryButton, BackButton } from '../shared/CustomButtons';
+import { PremiumIcon } from '../ui/PremiumIcon';
 
 interface ModuleLevel3Props {
   onComplete: (points: number) => void;
@@ -135,7 +136,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                   transition={{ delay: index * 0.1 }}
                   className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
                 >
-                  <span className="text-3xl">{item.icon}</span>
+                  <PremiumIcon emoji={item.icon} size={20} showBackground={true} />
                   <div>
                     <h4 className="font-bold text-gray-800">{item.title}</h4>
                     <p className="text-sm text-gray-500">{item.desc}</p>
@@ -260,15 +261,27 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-2xl border border-gray-100 text-center">
-                <p className="text-xs text-gray-500 mb-1">Sin Plan</p>
-                <div className="text-2xl mb-1">💸 ➔ 🛒 ➔ ❓</div>
+              <div className="bg-white p-4 rounded-2xl border border-gray-100 text-center flex flex-col items-center justify-center">
+                <p className="text-xs text-gray-500 mb-2">Sin Plan</p>
+                <div className="flex items-center justify-center gap-1 mb-2">
+                  <PremiumIcon emoji="💰" size={14} showBackground={false} className="opacity-60 grayscale" />
+                  <span className="text-xs text-gray-400">➔</span>
+                  <PremiumIcon emoji="🛒" size={14} showBackground={false} className="opacity-60 grayscale" />
+                  <span className="text-xs text-gray-400">➔</span>
+                  <span className="text-xs font-black text-red-500 bg-red-50 px-1 rounded">❓</span>
+                </div>
                 <p className="text-[10px] text-gray-400">Gasto total</p>
               </div>
-              <div className="bg-white p-4 rounded-2xl border border-purple-200 text-center ring-2 ring-purple-50">
-                <p className="text-xs text-purple-600 font-bold mb-1">Con Plan</p>
-                <div className="text-2xl mb-1">💰 ➔ 🏦 ➔ 🛒</div>
-                <p className="text-[10px] text-purple-400">Ahorro asegurado</p>
+              <div className="bg-white p-4 rounded-2xl border border-purple-200 text-center ring-2 ring-purple-50 flex flex-col items-center justify-center">
+                <p className="text-xs text-purple-600 font-bold mb-2">Con Plan</p>
+                <div className="flex items-center justify-center gap-1 mb-2">
+                  <PremiumIcon emoji="💰" size={14} showBackground={false} />
+                  <span className="text-xs text-purple-400">➔</span>
+                  <PremiumIcon emoji="🐷" size={14} showBackground={false} />
+                  <span className="text-xs text-purple-400">➔</span>
+                  <PremiumIcon emoji="🛒" size={14} showBackground={false} />
+                </div>
+                <p className="text-[10px] text-purple-400 font-semibold">Ahorro asegurado</p>
               </div>
             </div>
           </div>

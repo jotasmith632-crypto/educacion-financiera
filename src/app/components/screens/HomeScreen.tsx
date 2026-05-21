@@ -3,6 +3,7 @@ import { Star, Target, Trophy, Users, LogOut, Zap, ArrowRight, Check, ChevronRig
 import { motion as Motion } from 'motion/react';
 import * as Progress from '@radix-ui/react-progress';
 import { BottomNav } from '../shared/BottomNav';
+import { AvatarRenderer } from '../ui/AvatarRenderer';
 
 interface Avatar {
   id: string;
@@ -70,13 +71,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               onClick={() => onNavigate('avatar')}
               className="relative"
             >
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center text-2xl relative border-3 border-white/40 shadow-lg"
-                style={{ backgroundColor: avatar.skin }}
-              >
-                <span className="absolute">{avatar.face}</span>
-                <span className="absolute -top-1 text-xl">{avatar.hair}</span>
-                <span className="absolute -top-0 -right-0 text-base">{avatar.accessory}</span>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center relative border-3 border-white/40 shadow-lg bg-gradient-to-tr from-purple-50 to-pink-50 overflow-hidden">
+                <AvatarRenderer avatar={avatar} size={50} />
               </div>
             </Motion.button>
             <div>
@@ -135,7 +131,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           whileTap={{ scale: 0.98 }}
           onClick={() => {
             const nextModule = modules.find(m => m.status === 'in-progress');
-            if (nextModule) handleStartChallenge(nextModule.id);
+            if (nextModule) {
+              handleStartChallenge(nextModule.id);
+            } else {
+              onNavigate('modules');
+            }
           }}
           className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white p-5 rounded-2xl shadow-lg flex items-center justify-between"
         >
