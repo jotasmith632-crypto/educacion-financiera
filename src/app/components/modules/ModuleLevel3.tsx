@@ -44,6 +44,15 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
   const totalBudget = 100;
 
   const handleNext = () => {
+    if (step === 4) {
+      const remaining = totalBudget - (budget.needs + budget.wants + budget.savings);
+      if (remaining > 0) {
+        setBudget(prev => ({
+          ...prev,
+          savings: prev.savings + remaining
+        }));
+      }
+    }
     if (step < totalSteps) {
       setStep(step + 1);
       window.scrollTo(0, 0);
@@ -232,13 +241,22 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
                 </div>
               </div>
 
-              {remaining === 0 && (
+              {remaining === 0 ? (
                 <Motion.div 
                   initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                   className="bg-green-100 text-green-700 p-3 rounded-xl text-center text-sm font-bold"
                 >
                   ¡Plan balanceado! Has distribuido todo el dinero.
                 </Motion.div>
+              ) : (
+                budget.needs + budget.wants + budget.savings > 0 && (
+                  <Motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                    className="bg-blue-50 text-blue-700 p-3 rounded-xl text-center text-xs font-semibold border border-blue-100"
+                  >
+                    💡 ¡Puedes avanzar! Lo que no asignes (S/ {remaining}) se guardará automáticamente en tu Ahorro 🐷.
+                  </Motion.div>
+                )
               )}
             </div>
           </div>
@@ -382,7 +400,7 @@ export const ModuleLevel3 = ({ onComplete, onBack }: ModuleLevel3Props) => {
         <div className="w-full max-w-md p-6 bg-gradient-to-t from-gray-50 via-gray-50 to-transparent pointer-events-auto">
           <PrimaryButton 
             onClick={handleNext}
-            disabled={step === 4 && totalBudget - (budget.needs + budget.wants + budget.savings) > 0}
+            disabled={step === 4 && (budget.needs + budget.wants + budget.savings) === 0}
           >
             {step === totalSteps ? 'Finalizar Nivel' : 'Siguiente'}
             <ArrowRight className="ml-2 w-5 h-5" />
